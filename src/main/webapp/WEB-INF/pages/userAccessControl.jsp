@@ -28,83 +28,128 @@
   </style>
      
   <script type='text/javascript'>
-   jQuery(document).ready(function () {
+$(function() {
+
+	$.extend($.jgrid.defaults, {
+				datatype: 'json',
+				jsonReader : {
+			        root: "rows",
+			        page: "page",
+			        total: "total",
+			        records: "records",
+			        repeatitems: false,
+			        cell: "cell",
+			        id: "id"
+			    },
 				
-			var lastSel,lastSel1,
-                grid=$("#roleMgmtTable"),
-				gridavail=$("#AvailableOperations"),
-                myDelOptions = {
-                    // because I use "local" data I don't want to send the changes to the server
-                    // so I use "processing:true" setting and delete the row manually in onclickSubmit
-                    onclickSubmit: function(rp_ge, rowid) {
-                        // we can use onclickSubmit function as "onclick" on "Delete" button
-                        alert("The row with rowid="+rowid+" will be deleted");
+				sortname: 'username',
+				sortorder: 'asc',
+				height: 'auto',
+				viewrecords: true,
+				rowList: [10, 20, 50, 100],
+				altRows: true,
+				loadError: function(xhr, status, error) {
+					alert(error);
+				}
+			});
 
-                        // delete row
-                        grid.delRowData(rowid);
-                        $("#delmod"+grid[0].id).hide();
+	$.extend($.jgrid.edit, {
+				closeAfterEdit: true,
+				closeAfterAdd: true,
+				ajaxEditOptions: { contentType: "application/json" },
+				mtype: 'PUT',
+				serializeEditData: function(data) {
+					delete data.oper;
+					return JSON.stringify(data);
+				}
+			});
+	$.extend($.jgrid.del, {
+				mtype: 'DELETE',
+				serializeDelData: function() {
+					return "";
+				}
+			});
 
-                        if (grid[0].p.lastpage > 1) {
-                            // reload grid to make the row from the next page visable.
-                            // TODO: deleting the last row from the last page which number is higher as 1
-                            grid.trigger("reloadGrid", [{page:grid[0].p.page}]);
-                        }
+	var editOptions = {
+		onclickSubmit: function(params, postdata) {
+			params.url = URL + '/' + postdata.id;
+		}
+	};
+	var addOptions = {mtype: "POST"};
+	var delOptions = {
+		onclickSubmit: function(params, postdata) {
+			params.url = URL + '/' + postdata;
+		}
+	};
 
-                        return true;
-                    },
-                    processing:true
-                };  			 
-
-
-             grid.jqGrid({
-                 url: "usersList",
-                 datatype: "json",
-                 jsonReader: {repeatitems: false, id: "ref"},
-                 colNames:['User Name','Email','First Name', 'Last Name','Mobile Number','Role'],
-                 colModel:[
-                     {name:'username',index:'username', width:150,editable:true,sorttype:'text'}, 
-                     {name:'email',index:'email', width:150,editable:true,sorttype:'text'},
-                     {name:'firstName',index:'firstName', width:150,editable:true,sorttype:'text'},
-                     {name:'lastName',index:'lastName', width:150,editable:true,sorttype:'text'},
-                     {name:'phone',index:'phone',width:150,editable:true,sorttype:'integer'},
-                     {name:'role',index:'role',width:150,editable:true,sorttype:'text'}
-                    
-                 ],
-                 rowNum:10,
-                 rowList:[20,60,100],
-                 pager: "#pagingDiv",
-                 viewrecords: true,
-				 sortname: 'username',
-				 sortorder: "asc",
-				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
-                 caption: "Users Management",
-				 height:200,
-                 editurl: 'clientArray',
-                 ondblClickRow: function(id, ri, ci) {
-                    // edit the row and save it on press "enter" key
-                    grid.jqGrid('editRow',id,true,null,null, 'clientArray');
-                },
-                onSelectRow: function(id) {
-                    if (id && id !== lastSel) {
-                        // cancel editing of the previous selected row if it was in editing state.
-                        // jqGrid hold intern savedRow array inside of jqGrid object,
-                        // so it is safe to call restoreRow method with any id parameter
-                        // if jqGrid not in editing state
-                        if (typeof lastSel !== "undefined") {
-                            grid.jqGrid('restoreRow',lastSel);
-                        }
-                        lastSel = id;
-                    }
-                }
-
-             });
+	var URL = 'usersList';
+	var options = {
+		url: URL,
+		editurl: URL,
+		colModel:[
+			{
+				name:'username',
+				label: 'Ussername',
+				index: 'username',
+				width: 150,
+				editable: true,
+				editrules: {required: true}
+			},
+			{
+				name:'firstName',
+				label: 'FirstName',
+				index: 'firstName',
+				width: 150,
+				editable: true,
+				editrules: {required: true}
+			},
+			{
+				name:'lastName',
+				label: 'LasttName',
+				index: 'lastName',
+				width: 150,
+				editable: true,
+				editrules: {required: true}
+			},
+			{
+				name:'email',
+				label: 'Email',
+				index: 'email',
+				width: 150,
+				editable: true,
+				editrules: {required: true}
+			},
+			{
+				name:'phone',
+				label: 'Phone',
+				index: 'phone',
+				width: 150,
+				editable: true,
+				editrules: {required: true}
+			},
 			
-			grid.jqGrid('navGrid',"#pagingDiv",{edit:true,add:true,del:true,search:false, refresh:false});
+		],
+		caption: "User Management",
+		pager : '#pager',
+		height: 'auto',
+		ondblClickRow: function(id) {
+			jQuery(this).jqGrid('editGridRow', id, editOptions);
+		}
+	};
 
+	$("#grid")
+			.jqGrid(options)
+			.navGrid('#pager',
+			{}, //options
+			editOptions,
+			addOptions,
+			delOptions,
+			{} // search options
+	);
 	
-			
+	
 
-         });
+});
   </script>
  </head>
  <body>
@@ -123,8 +168,8 @@
 								 <div>
 							         <div style="width:100%;border:1px;">
 								          <div style="float: left;border:1px;">
-								              <table id="roleMgmtTable"></table>
-								              <div id="pagingDiv"></div>
+								              <table id="grid"></table>
+								              <div id="pager"></div>
 								          </div>
 								
 										 

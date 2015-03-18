@@ -8,10 +8,11 @@
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 
-	<bean id="loginDao" class="com.ebus.dao.LoginDaoImpl"></bean>
-	<bean id="loginService" class="com.ebus.service.LoginServiceImpl"></bean>
-	<bean id ="orgDao" class="com.ebus.dao.OrganizationDaoImpl"></bean>
+	<bean id = "loginDao" class = "com.ebus.dao.LoginDaoImpl"></bean>
+	<bean id = "loginService" class = "com.ebus.service.LoginServiceImpl"></bean>
+	<bean id ="orgDao" class = "com.ebus.dao.OrganizationDaoImpl"></bean>
 	<bean id = "orgService" class = "com.ebus.service.OrganizationServiceImpl"></bean>
-	
+	<bean id = "roleService" class = "com.ebus.service.RoleServiceImpl"></bean>
+	<bean id = "roleDao" class = "com.ebus.dao.RoleDaoImpl"></bean>
 
 </beans>

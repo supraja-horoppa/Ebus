@@ -50,4 +50,9 @@ public class LoginServiceImpl implements LoginService {
 		return loginDao.updateUser(userId,user);
 	}
 
+
+	public LoginForm getLoginById(String userId) {
+		return loginDao.readLoginById(userId);
+	}
+
 }

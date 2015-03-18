@@ -8,6 +8,8 @@ public interface LoginDao {
 	
 	public LoginForm readLoginByUsername(String username);
 	
+	public LoginForm readLoginById(String userId);
+	
 	public List<LoginForm> readUsers();
 	
 	public LoginForm createUser(LoginForm user);

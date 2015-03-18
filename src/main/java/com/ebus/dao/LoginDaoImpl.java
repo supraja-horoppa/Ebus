@@ -38,6 +38,23 @@ public class LoginDaoImpl implements LoginDao {
 		session.close();
 		return login;
 	}
+	
+	public LoginForm readLoginById(String userId) {
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		tx = session.getTransaction();
+		String hql = "FROM LoginForm E WHERE E.id = '"+userId+"'";
+		Query query = session.createQuery(hql);
+		List results = query.list();
+		Iterator it = results.iterator();
+		LoginForm login = null;
+		while(it.hasNext()) {
+			login =(LoginForm) it.next();
+		}
+		tx.commit();
+		session.close();
+		return login;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<LoginForm> readUsers() {

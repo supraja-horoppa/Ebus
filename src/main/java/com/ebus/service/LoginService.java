@@ -8,6 +8,8 @@ public interface LoginService {
 	
 	public LoginForm getLoginByUsername(String username);
 	
+	public LoginForm getLoginById(String userId);
+	
 	public List<LoginForm> getUsers();
 	
 	public LoginForm createUser(LoginForm user);

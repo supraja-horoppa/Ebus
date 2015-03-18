@@ -13,10 +13,10 @@
 </head>
 <body>
 <div id="header">
-<table width="2000">
+<table width="1000">
 	<tr>
-		<td width="1000"><h2>Ebus</h2></td>
-		<td width="1000"><h3><input type="text" name="search"/></h3><br/>
+		<td width="500"><h2>Ebus</h2></td>
+		<td width="500"><h3><input type="text" name="search"/></h3><br/>
 		
 		</td>
 	</tr>
