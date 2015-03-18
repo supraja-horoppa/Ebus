@@ -42,8 +42,8 @@
 				</ul></li>
 			<li><a href="Home">Admin Tool</a>
 				<ul>
-					<li><a href="roleAccess">Add Role</a></li>
-					<li><a href="userAccess">Add User</a></li>
+					<li><a href="roleAccess">Role Management</a></li>
+					<li><a href="userAccess">User Management</a></li>
 				</ul></li>
 			
 			<li><a href="#">CONTACT US</a></li>

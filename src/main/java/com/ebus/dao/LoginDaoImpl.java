@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.ebus.dao.LoginDao;
 import com.ebus.entity.LoginForm;
 
@@ -48,5 +49,37 @@ public class LoginDaoImpl implements LoginDao {
 	    tx.commit();
 	    session.close();
 		return accts;
+	}
+	
+	public LoginForm createUser(LoginForm user) {
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		tx = session.getTransaction();
+		session.save(user);
+		tx.commit();
+		session.close();
+		return user;
+	}
+	
+	public boolean deleteUser(String userId)  {
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		tx = session.getTransaction();
+		Object o = session.load(LoginForm.class, userId);
+		session.delete(o);
+		tx.commit();
+		session.close();
+		return false;
+	}
+	
+	public LoginForm updateUser(String userId, LoginForm user) {
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		session.update(user); 
+		LoginForm acctObj = (LoginForm) session.load(LoginForm.class,
+				new String(userId));
+		tx.commit();
+		session.close();
+		return acctObj;
 	}
 }

@@ -9,5 +9,11 @@ public interface LoginDao {
 	public LoginForm readLoginByUsername(String username);
 	
 	public List<LoginForm> readUsers();
+	
+	public LoginForm createUser(LoginForm user);
+	
+	public boolean deleteUser(String userId);
+	
+	public LoginForm updateUser(String userId,LoginForm user);
 
 }

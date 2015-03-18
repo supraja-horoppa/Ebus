@@ -9,5 +9,11 @@ public interface LoginService {
 	public LoginForm getLoginByUsername(String username);
 	
 	public List<LoginForm> getUsers();
+	
+	public LoginForm createUser(LoginForm user);
+	
+	public boolean deleteUser(String userId);
+	
+	public LoginForm updateUser(String userId, LoginForm user);
 
 }

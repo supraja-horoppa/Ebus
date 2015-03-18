@@ -46,7 +46,7 @@ public class LoginController {
     public String create(Model model, LoginForm loginForm, BindingResult result, RedirectAttributes redirectAttributes) {
 
     	LoginForm login = loginService.getLoginByUsername(loginForm.getUsername());
-    	
+    	    	
 		if(login == null) {
 			return "loginfail";
 		}
@@ -63,13 +63,6 @@ public class LoginController {
 
     }
 
-    @RequestMapping(value = "/security-error", method = RequestMethod.GET)
-    public String securityError(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("page_error", "You do have have permission to do that!");
-        return "redirect:/";
-    }
-    
-    
     @RequestMapping(value = "/userAccess", method = RequestMethod.GET)
     public String userAccess(Model model, LoginForm loginForm, BindingResult result, RedirectAttributes redirectAttributes) {
     	model.addAttribute("title", "Users list");
@@ -93,7 +86,6 @@ public class LoginController {
     
     @RequestMapping(value="/usersList", method = GET)
 	public @ResponseBody String listBooks() {
-    	System.out.println("Received request to get all users");
     	// Retrieve all users from the service
     	List<LoginForm> users = loginService.getUsers();
     	Gson gson = new GsonBuilder().setPrettyPrinting().create();
