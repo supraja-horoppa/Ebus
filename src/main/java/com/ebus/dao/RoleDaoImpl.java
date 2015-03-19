@@ -24,7 +24,7 @@ public class RoleDaoImpl implements RoleDao{
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		tx = session.getTransaction();
-		String hql = "FROM ROle R WHERE R.id = '"+roleId+"'";
+		String hql = "FROM Role R WHERE R.id = '"+roleId+"'";
 		Query query = session.createQuery(hql);
 		List results = query.list();
 		Iterator it = results.iterator();

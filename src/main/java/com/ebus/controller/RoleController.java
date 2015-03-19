@@ -51,6 +51,11 @@ public class RoleController {
     	return jsonArray;
 	}
 	
+	/**
+	 * role details for drop down
+	 * @return
+	 */
+	
 	@RequestMapping(value="/roles", method = GET)
 	public @ResponseBody String getRoles() {
     	// Retrieve all users from the service
@@ -69,7 +74,7 @@ public class RoleController {
     public void addRole(Model model, Role role) {
     	System.out.println("in add controller");
     	Role roleObj = roleService.createRole(role);
-    	//return "loginsuccess";
+    	
     }
     
     @RequestMapping(value = "/rolesList/{id}", method = RequestMethod.PUT)
@@ -77,7 +82,7 @@ public class RoleController {
     public void editRole(@PathVariable("id") String id,Model model,Role role) {
     	System.out.println("in controller");
     	Role roleObj = roleService.updateRole(id, role);
-    	//return "loginsuccess";
+    	
     }
     
     @RequestMapping(value = "/rolesList/{id}", method = RequestMethod.DELETE)
@@ -86,7 +91,7 @@ public class RoleController {
     	System.out.println("in delete user");
     	boolean roleStatus = roleService.deleteRole(id);
     	System.out.println("role is deleted "+roleStatus);
-    	//return "loginsuccess";
+    	
     }
     
     @RequestMapping(value="/optsList", method = GET)

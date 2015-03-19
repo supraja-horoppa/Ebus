@@ -1,5 +1,6 @@
 package com.ebus.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ebus.dao.LoginDao;
+import com.ebus.dao.RoleDao;
 import com.ebus.entity.LoginForm;
+import com.ebus.entity.Role;
 import com.ebus.service.LoginService;
 
 @Service
@@ -17,7 +20,10 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	LoginDao loginDao;
-	 
+	
+	@Autowired
+	RoleService roleService;
+	
     public void setLoginDAO(LoginDao loginDao) {
         this.loginDao = loginDao;
     }
@@ -31,7 +37,13 @@ public class LoginServiceImpl implements LoginService {
 
 	public List<LoginForm> getUsers() {
 		List<LoginForm> users = loginDao.readUsers();
-		return users;
+		List<LoginForm> usersList = new ArrayList<LoginForm>();
+		for(LoginForm user : users) {
+			Role role = roleService.getRoleById(user.getRole());
+			user.setRole(role.getRoleName());
+			usersList.add(user);
+		}
+		return usersList;
 	}
 
 
