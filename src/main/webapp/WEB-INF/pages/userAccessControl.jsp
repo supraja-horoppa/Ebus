@@ -131,9 +131,12 @@ $(function() {
 				name:'role',
 				label: 'Role',
 				index: 'role',
-				width: 150,
+				width: 200,
 				editable: true,
-				editrules: {required: true}
+				editrules: {required: true},
+				edittype: 'select', 
+                formatter: 'text',
+                editoptions:{aysnc:false,dataUrl:'roles'}
 			},
 			
 		],
@@ -155,8 +158,14 @@ $(function() {
 			{} // search options
 	);
 	
-	
+	function getAllSelectOptions(){
+		 var states = { "1": "Alabama", "2": "California", "3": "Florida", 
+		               "4": "Hawaii", "5": "London", "6": "Oxford" };
+		 
+		return states;
 
+		}
+	
 });
 </script>
 </head>

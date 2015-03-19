@@ -116,7 +116,7 @@
 				 sortorder: "desc",
 				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
                  caption: "Available Operations",
-				height:200,
+				height:250,
 				multiselect: true,
                 editurl: 'clientArray',
                 ondblClickRow: function(id, ri, ci) {

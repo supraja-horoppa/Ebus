@@ -51,6 +51,19 @@ public class RoleController {
     	return jsonArray;
 	}
 	
+	@RequestMapping(value="/roles", method = GET)
+	public @ResponseBody String getRoles() {
+    	// Retrieve all users from the service
+    	List<Role> roles = roleService.getRoles();
+    	String output = "<select>";
+    	for(Role role:roles) {
+    		output=output+"<option value='"+role.getId()+"'>"+role.getRoleName()+"</option>";
+    	}
+    	output = output+"</select>";
+        System.out.println("roles are "+output);
+       	return output;
+	}
+	
 	@RequestMapping(value = "/rolesList", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addRole(Model model, Role role) {
