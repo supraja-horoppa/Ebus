@@ -4,7 +4,7 @@
 <html>
  <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>jqGrid Example</title>
+  <title>User Management</title>
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
@@ -14,7 +14,7 @@
     <script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js"></script>
   <style type='text/css'>
 
-.ui-jqgrid-btable .ui-state-highlight { background: yellow; }
+.ui-jqgrid-btable .ui-state-highlight { background: ash; }
 .ui-jqgrid-htable .ui-jqgrid-labels {background-color:green}
 
 .ui-jqgrid .ui-widget-header {
@@ -127,6 +127,14 @@ $(function() {
 				editable: true,
 				editrules: {required: true}
 			},
+			{
+				name:'role',
+				label: 'Role',
+				index: 'role',
+				width: 150,
+				editable: true,
+				editrules: {required: true}
+			},
 			
 		],
 		caption: "User Management",
@@ -150,8 +158,8 @@ $(function() {
 	
 
 });
-  </script>
- </head>
+</script>
+</head>
  <body>
 
 <div style="float:left;width:1155px;height:100%">
@@ -184,7 +192,11 @@ $(function() {
 			<td style="border-left: 3px solid #cdd0d4;"/>
 	   </tr>
 	</table>
-
+<table>
+	<tr>
+		<td><a href="Home">Home</a></td>
+	</tr>
+</table>
 </div>
 
 

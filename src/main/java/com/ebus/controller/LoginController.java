@@ -11,6 +11,9 @@ import com.ebus.service.LoginService;
 import com.ebus.service.OrganizationService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,20 +66,31 @@ public class LoginController {
     
     @RequestMapping(value = "/usersList", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void adduser(Model model, LoginForm login) {
-    	System.out.println("login is "+login.getEmail());
+    public void adduser(@RequestBody String login) {
+    	System.out.println("login is "+login);
     	System.out.println("in add controller");
-    	LoginForm user = loginService.createUser(login);
-    	//return "loginsuccess";
+    	LoginForm loginObj = new LoginForm(login);
+    	LoginForm user = loginService.createUser(loginObj);
+    	
     }
     
     @RequestMapping(value = "/usersList/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void edituser(@PathVariable("id") String id,Model model,LoginForm login) {
-    	System.out.println("in controller");
-    	System.out.println(login.getLastName());
-    	LoginForm user = loginService.updateUser(id, login);
-    	//return "loginsuccess";
+    public void edituser(@PathVariable("id") String id,@RequestBody String login) {
+    	try {
+			JSONObject json = new JSONObject(login);
+			if(json.has("id")&& json.getString("id")!=null){
+				id = json.getString("id");
+			}
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+    	LoginForm user = loginService.getLoginById(id);
+    	System.out.println("user is "+user);
+    	user.updateByJson(login);
+    	LoginForm userObj = loginService.updateUser(id, user);
+    	
     }
     
     @RequestMapping(value = "/usersList/{id}", method = RequestMethod.DELETE)
@@ -85,7 +99,7 @@ public class LoginController {
     	System.out.println("in delete user");
     	boolean user = loginService.deleteUser(id);
     	System.out.println("user is deleted "+user);
-    	//return "loginsuccess";
+    	
     }
 
     @RequestMapping(value = "/userAccess", method = RequestMethod.GET)

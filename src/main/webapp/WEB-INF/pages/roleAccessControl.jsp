@@ -4,7 +4,7 @@
 <html>
  <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>jqGrid Example</title>
+  <title>Role Management</title>
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
@@ -14,7 +14,7 @@
     <script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js"></script>
   <style type='text/css'>
 
-.ui-jqgrid-btable .ui-state-highlight { background: yellow; }
+.ui-jqgrid-btable .ui-state-highlight { background: ash; }
 .ui-jqgrid-htable .ui-jqgrid-labels {background-color:green}
 
 .ui-jqgrid .ui-widget-header {
@@ -62,9 +62,9 @@
                  jsonReader: {repeatitems: false, id: "ref"},
                  colNames:['role Name','Description', 'Status'],
                  colModel:[
-                     {name:'roleName',index:'roleName', width:100,editable:true,sorttype:'text',editrules:{text:true},},
-                     {name:'description',index:'description', width:200,editable:true,sorttype:'text'},
-                     {name:'status',index:'status', width:100,editable:true,sorttype:'text'}
+                     {name:'roleName',index:'roleName', width:150,editable:true,sorttype:'text',editrules:{text:true},},
+                     {name:'description',index:'description', width:150,editable:true,sorttype:'text'},
+                     {name:'status',index:'status', width:150,editable:true,sorttype:'text'}
                  ],
                  rowNum:10,
                  rowList:[20,60,100],
@@ -99,14 +99,14 @@
 
 	
 			gridavail.jqGrid({
-                 url: "LoadJsonDataServlet?type=BS21 7RH",
+                 url: "optsList",
                  datatype: "json",
                  jsonReader: {repeatitems: false, id: "ref"},
-                 colNames:['First Name','Last Name', 'Address'],
+                 colNames:['Name','Description'],
                  colModel:[
-                     {name:'firstName',index:'firstName', width:100,editable:true,sorttype:'text',editrules:{text:true},},
-                     {name:'lastName',index:'lastName', width:100,editable:true,sorttype:'text'},
-                     {name:'address',index:'address', width:300,editable:true,sorttype:'text'}
+                     {name:'name',index:'name', width:150,editable:true,sorttype:'text',editrules:{text:true},},
+                     {name:'description',index:'description', width:300,editable:true,sorttype:'text'}
+                     
                  ],
                  rowNum:20,
                  rowList:[20,60,100],

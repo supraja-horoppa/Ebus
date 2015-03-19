@@ -16,6 +16,7 @@
 				<value>com.ebus.entity.LoginForm</value>
 				<value>com.ebus.entity.Organization</value>
 				<value>com.ebus.entity.Role</value>
+				<value>com.ebus.entity.Operations</value>
 				</list>
 		</property>
 		<property name="hibernateProperties">

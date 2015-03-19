@@ -93,10 +93,8 @@ public class LoginDaoImpl implements LoginDao {
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 		session.update(user); 
-		LoginForm acctObj = (LoginForm) session.load(LoginForm.class,
-				new String(userId));
 		tx.commit();
 		session.close();
-		return acctObj;
+		return user;
 	}
 }

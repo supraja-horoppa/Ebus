@@ -14,5 +14,7 @@
 	<bean id = "orgService" class = "com.ebus.service.OrganizationServiceImpl"></bean>
 	<bean id = "roleService" class = "com.ebus.service.RoleServiceImpl"></bean>
 	<bean id = "roleDao" class = "com.ebus.dao.RoleDaoImpl"></bean>
+	<bean id = "operationsService" class = "com.ebus.service.OperationsServiceImpl"></bean>
+	<bean id = "operationsDao" class = "com.ebus.dao.OperationsDaoImpl"></bean>
 
 </beans>

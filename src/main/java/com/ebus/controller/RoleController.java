@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ebus.entity.LoginForm;
+import com.ebus.entity.Operations;
 import com.ebus.entity.Role;
+import com.ebus.service.OperationsService;
 import com.ebus.service.RoleService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,6 +29,9 @@ public class RoleController {
 	
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	OperationsService operationsService;
 	
 	@RequestMapping(value = "/roleAccess", method = RequestMethod.GET)
     public String roleAccess(Model model, LoginForm loginForm, BindingResult result, RedirectAttributes redirectAttributes) {
@@ -70,5 +75,16 @@ public class RoleController {
     	System.out.println("role is deleted "+roleStatus);
     	//return "loginsuccess";
     }
+    
+    @RequestMapping(value="/optsList", method = GET)
+	public @ResponseBody String listOpts() {
+    	// Retrieve all users from the service
+    	List<Operations> opts = operationsService.getOperations();
+    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonArray = gson.toJson(opts);
+        jsonArray = "{\"page\":1,\"total\":\"2\",\"records\":"
+                + opts.size() + ",\"rows\":" + jsonArray + "}";
+    	return jsonArray;
+	}
 
 }
