@@ -14,7 +14,7 @@
 
 .ui-jqgrid-btable .ui-state-highlight { background: yellow; }
 .ui-jqgrid-htable .ui-jqgrid-labels {background-color:green}
-
+..ui-pg-table {background:green}
 .ui-jqgrid .ui-widget-header {
     border: 1px solid #0b3e6f;
     background: #7da600;
@@ -55,32 +55,29 @@
 
 
              grid.jqGrid({
-                 url: "usersList",
+                 url: "rolesList",
                  datatype: "json",
                  jsonReader: {repeatitems: false, id: "ref"},
-                 colNames:['User Name','Email','First Name', 'Last Name','Mobile Number','Role'],
+                 colNames:['Id','role Name','Description', 'Status'],
                  colModel:[
-                     {name:'username',index:'username', width:150,editable:true,sorttype:'text'}, 
-                     {name:'email',index:'email', width:150,editable:true,sorttype:'text'},
-                     {name:'firstName',index:'firstName', width:150,editable:true,sorttype:'text'},
-                     {name:'lastName',index:'lastName', width:150,editable:true,sorttype:'text'},
-                     {name:'phone',index:'phone',width:150,editable:true,sorttype:'integer'},
-                     {name:'role',index:'role',width:150,editable:true,sorttype:'text'}
-                    
+                           {name:'roleId', index:'roleId',width:150,editable:true,sorttype:'text',hidden:true},
+                     {name:'roleName',index:'roleName', width:150,editable:true,sorttype:'text',editrules:{text:true},},
+                     {name:'description',index:'description', width:150,editable:true,sorttype:'text'},
+                     {name:'status',index:'status', width:150,editable:true,sorttype:'text'}
                  ],
                  rowNum:10,
                  rowList:[20,60,100],
                  pager: "#pagingDiv",
                  viewrecords: true,
-				 sortname: 'username',
-				 sortorder: "asc",
+				 sortname: 'firstName',
+				 sortorder: "desc",
 				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
-                 caption: "Users Management",
-				 height:200,
-                 editurl: 'clientArray',
-                 ondblClickRow: function(id, ri, ci) {
+                 caption: "Role Management",
+				height:200,
+                editurl: 'rolesList',
+                ondblClickRow: function(id, ri, ci) {
                     // edit the row and save it on press "enter" key
-                    grid.jqGrid('editRow',id,true,null,null, 'clientArray');
+                    grid.jqGrid('editRow',id,true,null,null, 'rolesList');
                 },
                 onSelectRow: function(id) {
                     if (id && id !== lastSel) {
@@ -97,25 +94,106 @@
 
              });
 			
-			grid.jqGrid('navGrid',"#pagingDiv",{edit:true,add:true,del:true,search:false, refresh:false});
+			grid.jqGrid('navGrid',"#pagingDiv",{edit:true,add:true,del:true,search:false, refresh:false},
+			        // Edit options
+		            {
+		            savekey: [true, 13],
+		            reloadAfterSubmit: true,
+		            //jqModal: true,
+		            closeOnEscape: true,
+		            closeAfterEdit: true,
+					height:300,
+					width:500,
+					bSubmit: "Update",
+					bCancel: "Close",
+					bClose: "Close",
+					editCaption: "Edit Record"
+					
+		        },
+		        // Add options
+		             {
+						 savekey: [true, 13],
+						 reloadAfterSubmit: true,
+						 //jqModal: true,
+						 height:300,
+						 width:500,
+						 bSubmit: "Save",
+						 bCancel: "Close",
+						 bClose: "Close",
+						 addCaption: "Add Record",
+						 closeOnEscape: true,
+						 closeAfterAdd: true, 
+						 closeOnEscape: true
+					},
+		        // Delete options
+		               { 
+							closeOnEscape: true, 
+							multipleSearch: false,
+							reloadAfterSubmit:true,
+		                    closeAfterSearch: false,
+		                    bSubmit: "Delete",
+							 bCancel: "Close",
+							 bClose: "Close",
+		               }
+		               );
 
 	
-			
+			gridavail.jqGrid({
+                 url: "optsList",
+                 datatype: "json",
+                 jsonReader: {repeatitems: false, id: "ref"},
+                 colNames:['Name','Description'],
+                 colModel:[
+                     {name:'name',index:'name', width:150,editable:true,sorttype:'text',editrules:{text:true},},
+                     {name:'description',index:'description', width:300,editable:true,sorttype:'text'}
+                     
+                 ],
+                 rowNum:20,
+                 rowList:[20,60,100],
+                 pager: "#pagingDiv1",
+                 viewrecords: true,
+				 sortname: 'firstName',
+				 sortorder: "desc",
+				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
+                 caption: "Available Operations",
+				height:200,
+				multiselect: true,
+                editurl: 'clientArray',
+                ondblClickRow: function(id, ri, ci) {
+                    // edit the row and save it on press "enter" key
+                    gridavail.jqGrid('editRow',id,true,null,null, 'clientArray');
+                },
+                onSelectRow: function(id) {
+                    if (id && id !== lastSel1) {
+                        // cancel editing of the previous selected row if it was in editing state.
+                        // jqGrid hold intern savedRow array inside of jqGrid object,
+                        // so it is safe to call restoreRow method with any id parameter
+                        // if jqGrid not in editing state
+                        if (typeof lastSel1 !== "undefined") {
+                            gridavail.jqGrid('restoreRow',lastSel1);
+                        }
+                        lastSel1 = id;
+                    }
+                }
+
+             });
+
+
 
          });
   </script>
  </head>
  <body>
-
+<form id='myForm'>
 <div style="float:left;width:1155px;height:100%">
 
 	<table border=0>
 		<tr>
-			<td style="border-left: 3px solid #cdd0d4;"/>		
+			<td style="border-left: 1px solid #cdd0d4;"/>		
 
 			<td>
 					<table style="width:100%;">
-						<tr><td bgcolor="#666666" style="color:white">Application Users</td></tr>
+						<tr><td bgcolor="#666666" style="color:white">Application Roles</td></tr>
 						<tr>						
 							<td>
 								 <div>
@@ -125,7 +203,10 @@
 								              <div id="pagingDiv"></div>
 								          </div>
 								
-										 
+										 <div style="float: left;padding:0px 0px 0px 20px">
+								              <table id="AvailableOperations"></table>
+								              <div id="pagingDiv1"></div>
+								          </div>
 							         </div>
 							  </div>
 							
@@ -139,7 +220,7 @@
 	</table>
 
 </div>
-
+</form>
 
 
  

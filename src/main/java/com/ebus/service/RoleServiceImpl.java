@@ -26,7 +26,6 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	public Role createRole(Role role) {
-		role.setId(UUID.randomUUID().toString());		
 		return roleDao.createRole(role);
 	}
 

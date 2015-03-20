@@ -2,7 +2,10 @@ package com.ebus.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.Enumeration;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,7 +66,7 @@ public class RoleController {
     	List<Role> roles = roleService.getRoles();
     	String output = "<select>";
     	for(Role role:roles) {
-    		output=output+"<option value='"+role.getId()+"'>"+role.getRoleName()+"</option>";
+    		output=output+"<option value='"+role.getRoleId()+"'>"+role.getRoleName()+"</option>";
     	}
     	output = output+"</select>";
         System.out.println("roles are "+output);
@@ -71,23 +75,36 @@ public class RoleController {
 	
 	@RequestMapping(value = "/rolesList", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addRole(Model model, Role role) {
-    	System.out.println("in add controller");
+    public void addRole(Model model, Role role, HttpServletRequest request) { 
+		Enumeration<String> e = request.getParameterNames();
+		String method = null;
+		String roleId = null;
+		while(e.hasMoreElements()){
+			String param = (String) e.nextElement();
+			if(param.equals("oper")) {
+				method = request.getParameter(param);
+			} else if(param.equals("roleId")) {
+				roleId = request.getParameter(param);
+			}
+		}
+		if(method.equals("add")) {
     	Role roleObj = roleService.createRole(role);
+		} else if (method.equals("edit")) {
+			editRole(roleId,role);
+		} else if(method.equals("del")) {
+			System.out.println("roleId is "+roleId);
+			deleteRole(roleId);
+		}
     	
     }
     
-    @RequestMapping(value = "/rolesList/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void editRole(@PathVariable("id") String id,Model model,Role role) {
-    	System.out.println("in controller");
+    public void editRole(String id, Role role) {
+    	System.out.println("in edit controller");
     	Role roleObj = roleService.updateRole(id, role);
     	
     }
     
-    @RequestMapping(value = "/rolesList/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteuser(@PathVariable("id") String id,Model model, Role role) {
+   public void deleteRole(String id) {
     	System.out.println("in delete user");
     	boolean roleStatus = roleService.deleteRole(id);
     	System.out.println("role is deleted "+roleStatus);

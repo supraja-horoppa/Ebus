@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
  <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Role Management</title>
+  <title>jqGrid Example</title>
     <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
@@ -14,9 +12,9 @@
     <script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js"></script>
   <style type='text/css'>
 
-.ui-jqgrid-btable .ui-state-highlight { background: ash; }
+.ui-jqgrid-btable .ui-state-highlight { background: yellow; }
 .ui-jqgrid-htable .ui-jqgrid-labels {background-color:green}
-
+..ui-pg-table {background:green}
 .ui-jqgrid .ui-widget-header {
     border: 1px solid #0b3e6f;
     background: #7da600;
@@ -60,8 +58,9 @@
                  url: "rolesList",
                  datatype: "json",
                  jsonReader: {repeatitems: false, id: "ref"},
-                 colNames:['role Name','Description', 'Status'],
+                 colNames:['Id','role Name','Description', 'Status'],
                  colModel:[
+                           {name:'roleId', index:'roleId',width:150,editable:true,sorttype:'text',hidden:true},
                      {name:'roleName',index:'roleName', width:150,editable:true,sorttype:'text',editrules:{text:true},},
                      {name:'description',index:'description', width:150,editable:true,sorttype:'text'},
                      {name:'status',index:'status', width:150,editable:true,sorttype:'text'}
@@ -75,10 +74,10 @@
 				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
                  caption: "Role Management",
 				height:200,
-                editurl: 'clientArray',
+                editurl: 'rolesList',
                 ondblClickRow: function(id, ri, ci) {
                     // edit the row and save it on press "enter" key
-                    grid.jqGrid('editRow',id,true,null,null, 'clientArray');
+                    grid.jqGrid('editRow',id,true,null,null, 'rolesList');
                 },
                 onSelectRow: function(id) {
                     if (id && id !== lastSel) {
@@ -95,7 +94,54 @@
 
              });
 			
-			grid.jqGrid('navGrid',"#pagingDiv",{edit:true,add:true,del:true,search:false, refresh:false});
+			grid.jqGrid('navGrid',"#pagingDiv",{edit:true,add:true,del:true,search:false, refresh:false},
+			        // Edit options
+		            {
+		            savekey: [true, 13],
+		            reloadAfterSubmit: true,
+		            //jqModal: true,
+		            closeOnEscape: true,
+		            closeAfterEdit: true,
+					height:300,
+					width:500,
+					bSubmit: "Update",
+					bCancel: "Close",
+					bClose: "Close",
+					editCaption: "Edit Record"
+					
+		        },
+		        // Add options
+		             {
+						 savekey: [true, 13],
+						 reloadAfterSubmit: true,
+						 //jqModal: true,
+						 height:300,
+						 width:500,
+						 bSubmit: "Save",
+						 bCancel: "Close",
+						 bClose: "Close",
+						 addCaption: "Add Record",
+						 closeOnEscape: true,
+						 closeAfterAdd: true, 
+						 closeOnEscape: true
+					},
+		        // Delete options
+		               { 
+							closeOnEscape: true, 
+							multipleSearch: false,
+							reloadAfterSubmit:true,
+		                    closeAfterSearch: false,
+		                    bSubmit: "Delete",
+							 bCancel: "Close",
+							 bClose: "Close",
+							 onclickSubmit: function (params) {	 
+									var list = $("#roleMgmtTable");
+									var selectedRow = list.getGridParam("selrow");
+									rowData = list.getRowData(selectedRow);
+									return rowData;
+								}
+		               }
+		               );
 
 	
 			gridavail.jqGrid({
@@ -116,7 +162,7 @@
 				 sortorder: "desc",
 				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
                  caption: "Available Operations",
-				height:250,
+				height:200,
 				multiselect: true,
                 editurl: 'clientArray',
                 ondblClickRow: function(id, ri, ci) {
@@ -144,7 +190,7 @@
   </script>
  </head>
  <body>
-
+<form id='myForm'>
 <div style="float:left;width:1155px;height:100%">
 
 	<table border=0>
@@ -180,7 +226,7 @@
 	</table>
 
 </div>
-
+</form>
 
 
  

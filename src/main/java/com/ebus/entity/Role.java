@@ -10,18 +10,19 @@ import javax.persistence.Table;
 public class Role {
 	@Id
     @Column(name="id")
-    private String id;
+    private String roleId;
 	@Column(name="role_name")
     private String roleName;
 	@Column(name="description")
     private String description;
     @Column(name = "status")
     private String status;
-	public String getId() {
-		return id;
+	
+	public String getRoleId() {
+		return roleId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 	public String getRoleName() {
 		return roleName;

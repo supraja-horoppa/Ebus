@@ -87,54 +87,12 @@ $(function() {
 		url: URL,
 		editurl: URL,
 		colModel:[
-			{
-				name:'username',
-				label: 'Ussername',
-				index: 'username',
-				width: 150,
-				editable: true,
-				editrules: {required: true}
-			},
-			{
-				name:'firstName',
-				label: 'FirstName',
-				index: 'firstName',
-				width: 150,
-				editable: true,
-				editrules: {required: true}
-			},
-			{
-				name:'lastName',
-				label: 'LasttName',
-				index: 'lastName',
-				width: 150,
-				editable: true,
-				editrules: {required: true}
-			},
-			{
-				name:'email',
-				label: 'Email',
-				index: 'email',
-				width: 150,
-				editable: true,
-				editrules: {required: true}
-			},
-			{
-				name:'phone',
-				label: 'Phone',
-				index: 'phone',
-				width: 150,
-				editable: true,
-				editrules: {required: true}
-			},
-			{
-				name:'role',
-				label: 'Role',
-				index: 'role',
-				width: 200,
-				editable: true,
-				editrules: {required: true},
-				edittype: 'select', 
+			{ name:'username', label: 'Ussername', index: 'username',  width: 150, editable: true, editrules: {required: true} },
+			{ name:'firstName', label: 'FirstName', index: 'firstName', width: 150, editable: true, editrules: {required: true} },
+			{ name:'lastName', label: 'LasttName', index: 'lastName', width: 150, editable: true, editrules: {required: true} },
+			{ name:'email', label: 'Email', index: 'email', width: 150, editable: true, editrules: {required: true} },
+			{ name:'phone', label: 'Phone', index: 'phone', width: 150, editable: true, editrules: {required: true} },
+			{ name:'role', label: 'Role', index: 'role', width: 200, editable: true, editrules: {required: true}, edittype: 'select', 
                 formatter: 'text',
                 editoptions:{aysnc:false,dataUrl:'roles'}
 			},
