@@ -224,7 +224,11 @@
 			<td style="border-left: 3px solid #cdd0d4;"/>
 	   </tr>
 	</table>
-
+<table>
+	<tr>
+		<td><a href="Home">Home</a></td>
+	</tr>
+</table>
 </div>
 </form>
 
