@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>jqGrid Example</title>
-    <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>jqGrid Example</title>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="http://trirand.com/blog/jqgrid/themes/ui.jqgrid.css">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/i18n/grid.locale-en.js"></script>
-    <script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js"></script>
-  <style type='text/css'>
+<script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/i18n/grid.locale-en.js"></script>
+<script type='text/javascript' src="http://trirand.com/blog/jqgrid/js/jquery.jqGrid.min.js"></script>
+<style type='text/css'>
 
 .ui-jqgrid-btable .ui-state-highlight { background: yellow; }
 .ui-jqgrid-htable .ui-jqgrid-labels {background-color:green}
@@ -24,8 +24,8 @@
 .ui-jqgrid .ui-jqgrid-bdiv { overflow-y: scroll }
 
   </style>
-     
-  <script type='text/javascript'>
+
+<script type='text/javascript'>
    jQuery(document).ready(function () {
 				
 			var lastSel,lastSel1,
@@ -148,8 +148,9 @@
                  url: "optsList",
                  datatype: "json",
                  jsonReader: {repeatitems: false, id: "ref"},
-                 colNames:['Name','Description'],
+                 colNames:['Id','Name','Description'],
                  colModel:[
+					 {name:'id',index:'id', width:150,editable:true,sorttype:'text',hidden:true},
                      {name:'name',index:'name', width:150,editable:true,sorttype:'text',editrules:{text:true},},
                      {name:'description',index:'description', width:300,editable:true,sorttype:'text'}
                      
@@ -184,7 +185,41 @@
 
              });
 
+$('#clickmeId').click(function(){
+   var myGrid = $("#roleMgmtTable");
+    selRowId = myGrid.jqGrid ('getGridParam', 'selrow');
+    roleIdValue = myGrid.jqGrid ('getCell', selRowId, 'roleId');
+	var avaGrid = $("#AvailableOperations");
+selopIds = avaGrid.jqGrid('getGridParam','selarrrow');
+selOpArrVal=[]
+if(selopIds==""){
+}else if(selopIds!=""){
+selOpArr = selopIds.toString().split(",");
+for(i=0;i<selOpArr.length;i++){
+	selOpArrVal[i] = avaGrid.jqGrid ('getCell', selOpArr[i], 'id');
+	alert("opr value="+selOpArrVal[i]);
+}
+}
+alert("roleId value="+roleIdValue);
+alert("op size="+selOpArrVal.length);
 
+$.ajax({
+	data: ({queryData : JSON.stringify({roleId:roleIdValue,operationsIds:selOpArrVal})}),
+    
+    success: function(data){
+        console.log("device control succeeded");
+    },
+    error: function(){
+        console.log("Device control failed");
+    },
+    processData: false,
+    type: 'POST',
+    url: "roleOperationsList"
+});
+
+	});
+	
+	
 
          });
   </script>
@@ -224,11 +259,10 @@
 			<td style="border-left: 3px solid #cdd0d4;"/>
 	   </tr>
 	</table>
-<table>
-	<tr>
-		<td><a href="Home">Home</a></td>
-	</tr>
-</table>
+	<div>
+		<div style="display:inline-block;"><a href="Home">Home</a></div>
+		<div id="clickmeId" style="display:inline-block;border: 1px solid #0b3e6f;background: #7da600;color: #40453a;cursor:pointer;">Click Me!</div>
+	</div>
 </div>
 </form>
 
