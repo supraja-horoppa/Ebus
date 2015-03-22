@@ -20,6 +20,10 @@ public class RoleOperation {
 	}
 	@Embeddable
     public static class RoleOperationId implements Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -4677699130936933978L;
 		@Column(name="role_id")
 	    private String roleId;
 		@Column(name="operation_id")
