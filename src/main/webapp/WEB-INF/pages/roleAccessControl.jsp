@@ -260,7 +260,7 @@ $.ajax({
 	</table>
 	<div>
 		<div style="display:inline-block;"><a href="Home">Home</a></div>
-		<div id="clickmeId" style="display:inline-block;border: 1px solid #0b3e6f;background: #7da600;color: #40453a;cursor:pointer;">Click Me!</div>
+		<div id="clickmeId" style="display:inline-block;border: 1px solid #0b3e6f;background: #7da600;color: #40453a;cursor:pointer;margin-left:20px;">Save</div>
 	</div>
 </div>
 </form>
