@@ -218,7 +218,8 @@ $.ajax({
     url: "roleOperationsList"
 });
 
-	});
+	}
+});
 });
 </script>
 </head>
