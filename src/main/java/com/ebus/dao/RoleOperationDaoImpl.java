@@ -1,5 +1,7 @@
 package com.ebus.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,11 +15,13 @@ public class RoleOperationDaoImpl implements RoleOperationDao {
 	SessionFactory sessionFactory;
 	Session session = null;
 	Transaction tx = null;
-	public RoleOperation createRoleOperation(RoleOperation roleOperation) {
+	public List<RoleOperation> createRoleOperation(List<RoleOperation> roleOperation) {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		tx = session.getTransaction();
-		session.save(roleOperation);
+		for(RoleOperation roleOp:roleOperation ){
+			session.save(roleOp);
+		}		
 		tx.commit();
 		session.close();
 		return roleOperation;

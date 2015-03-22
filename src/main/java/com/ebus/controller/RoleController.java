@@ -2,6 +2,7 @@ package com.ebus.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -24,7 +25,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ebus.entity.LoginForm;
 import com.ebus.entity.Operations;
 import com.ebus.entity.Role;
+import com.ebus.entity.RoleOperation;
+import com.ebus.entity.RoleOperation.RoleOperationId;
 import com.ebus.service.OperationsService;
+import com.ebus.service.RoleOperationService;
 import com.ebus.service.RoleService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,6 +38,8 @@ public class RoleController {
 	
 	@Autowired
 	RoleService roleService;
+	@Autowired
+	RoleOperationService roleOperationService;
 	
 	@Autowired
 	OperationsService operationsService;
@@ -77,8 +83,25 @@ public class RoleController {
 	@RequestMapping(value="/roleOperationsList", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	
-	public void createRoleOperations(@RequestParam String queryData) {
-    	System.out.println("--------------------"+queryData);
+	public void createRoleOperations(@RequestParam(value="roleId")  String roleId,@RequestParam(value="avaOpList") String avaOpList) {
+    	System.out.println("--------------------"+roleId +"------"+avaOpList);
+    	List<RoleOperation> roleOpEntityList = new ArrayList<RoleOperation>();
+    	if(roleId!=null && avaOpList!=null){
+    		String[] avaOpIdsList = avaOpList.split(",");
+    		for(int i=0; i<avaOpIdsList.length;i++){
+    			RoleOperationId roleOperationId = new RoleOperationId();
+    			roleOperationId.setRoleId(roleId);
+    			roleOperationId.setOperationId(avaOpIdsList[i]);
+    			
+    			RoleOperation roleOpr = new RoleOperation();
+    			roleOpr.setRoleOperationId(roleOperationId);
+    			roleOpEntityList.add(roleOpr);
+    			System.out.println("roleOpEntityList--------"+roleOpEntityList);
+    		}
+    		roleOperationService.createRoleOperation(roleOpEntityList);
+    	}else{
+    		System.out.println("RoleId or OperationId's Null....");
+    	}
 	}
 	
 	@RequestMapping(value = "/rolesList", method = RequestMethod.POST)

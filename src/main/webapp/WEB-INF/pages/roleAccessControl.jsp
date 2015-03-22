@@ -191,40 +191,38 @@ $('#clickmeId').click(function(){
     roleIdValue = myGrid.jqGrid ('getCell', selRowId, 'roleId');
 	var avaGrid = $("#AvailableOperations");
 selopIds = avaGrid.jqGrid('getGridParam','selarrrow');
-selOpArrVal=[]
+selOpArrVal=""
 if(selopIds==""){
 }else if(selopIds!=""){
 selOpArr = selopIds.toString().split(",");
 for(i=0;i<selOpArr.length;i++){
-	selOpArrVal[i] = avaGrid.jqGrid ('getCell', selOpArr[i], 'id');
-	alert("opr value="+selOpArrVal[i]);
+	if(i < selOpArr.length-1){
+		selOpArrVal = selOpArrVal + avaGrid.jqGrid ('getCell', selOpArr[i], 'id') +",";
+	}else if(i==selOpArr.length-1){
+	selOpArrVal = selOpArrVal + avaGrid.jqGrid ('getCell', selOpArr[i], 'id');
+	}
 }
-}
-alert("roleId value="+roleIdValue);
-alert("op size="+selOpArrVal.length);
+console.log("roleId value="+roleIdValue);
+console.log("selOpArrVal value="+selOpArrVal);
 
 $.ajax({
-	data: ({queryData : JSON.stringify({roleId:roleIdValue,operationsIds:selOpArrVal})}),
-    
+	data: {"roleId":roleIdValue,"avaOpList":selOpArrVal}
+	,
     success: function(data){
-        console.log("device control succeeded");
+        console.log("device control succeeded"+data);
     },
-    error: function(){
+    error: function(errMsg){
         console.log("Device control failed");
     },
-    processData: false,
     type: 'POST',
     url: "roleOperationsList"
 });
 
 	});
-	
-	
-
-         });
-  </script>
- </head>
- <body>
+});
+</script>
+</head>
+<body>
 <form id='myForm'>
 <div style="float:left;width:1155px;height:100%">
 

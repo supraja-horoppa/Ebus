@@ -1,5 +1,7 @@
 package com.ebus.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ebus.dao.RoleOperationDao;
@@ -11,7 +13,7 @@ public class RoleOperationServiceImpl implements RoleOperationService {
 	public void setRoleOperationDao(RoleOperationDao roleOperationDao) {
         this.roleOperationDao = roleOperationDao;
     }
-	public RoleOperation createRoleOperation(RoleOperation roleOperation) {
+	public List<RoleOperation> createRoleOperation(List<RoleOperation> roleOperation) {
 		return roleOperationDao.createRoleOperation(roleOperation);
 	}
 

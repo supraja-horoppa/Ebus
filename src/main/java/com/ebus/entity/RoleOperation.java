@@ -12,6 +12,12 @@ import javax.persistence.Table;
 public class RoleOperation {
 	@Id
     private RoleOperationId roleOperationId;
+	public RoleOperationId getRoleOperationId() {
+		return roleOperationId;
+	}
+	public void setRoleOperationId(RoleOperationId roleOperationId) {
+		this.roleOperationId = roleOperationId;
+	}
 	@Embeddable
     public static class RoleOperationId implements Serializable {
 		@Column(name="role_id")
