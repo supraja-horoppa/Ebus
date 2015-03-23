@@ -39,6 +39,7 @@ $(function() {
 			        records: "records",
 			        repeatitems: false,
 			        cell: "cell",
+			        loadOnce: true,
 			        id: "id"
 			    },
 				
@@ -88,6 +89,7 @@ $(function() {
 		editurl: URL,
 		colModel:[
 			{ name:'username', label: 'Ussername', index: 'username',  width: 150, editable: true, editrules: {required: true} },
+			{ name:'password', lable: 'Password', index: 'password', width:150, editable: true, editrules: {required: true} },
 			{ name:'firstName', label: 'FirstName', index: 'firstName', width: 150, editable: true, editrules: {required: true} },
 			{ name:'lastName', label: 'LasttName', index: 'lastName', width: 150, editable: true, editrules: {required: true} },
 			{ name:'email', label: 'Email', index: 'email', width: 150, editable: true, editrules: {required: true} },
@@ -116,18 +118,11 @@ $(function() {
 			{} // search options
 	);
 	
-	function getAllSelectOptions(){
-		 var states = { "1": "Alabama", "2": "California", "3": "Florida", 
-		               "4": "Hawaii", "5": "London", "6": "Oxford" };
-		 
-		return states;
-
-		}
-	
+		
 });
 </script>
 </head>
- <body>
+<body>
 
 <div style="float:left;width:1155px;height:100%">
 

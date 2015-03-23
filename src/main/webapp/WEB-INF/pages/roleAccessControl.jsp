@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>jqGrid Example</title>
+<title>Role Management</title>
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
@@ -30,31 +30,9 @@
 				
 			var lastSel,lastSel1,
                 grid=$("#roleMgmtTable"),
-				gridavail=$("#AvailableOperations"),
-                myDelOptions = {
-                    // because I use "local" data I don't want to send the changes to the server
-                    // so I use "processing:true" setting and delete the row manually in onclickSubmit
-                    onclickSubmit: function(rp_ge, rowid) {
-                        // we can use onclickSubmit function as "onclick" on "Delete" button
-                        alert("The row with rowid="+rowid+" will be deleted");
-
-                        // delete row
-                        grid.delRowData(rowid);
-                        $("#delmod"+grid[0].id).hide();
-
-                        if (grid[0].p.lastpage > 1) {
-                            // reload grid to make the row from the next page visable.
-                            // TODO: deleting the last row from the last page which number is higher as 1
-                            grid.trigger("reloadGrid", [{page:grid[0].p.page}]);
-                        }
-
-                        return true;
-                    },
-                    processing:true
-                };  			 
-
-
-             grid.jqGrid({
+				gridavail=$("#AvailableOperations");
+               
+		grid.jqGrid({
                  url: "rolesList",
                  datatype: "json",
                  jsonReader: {repeatitems: false, id: "ref"},
@@ -65,12 +43,11 @@
                      {name:'description',index:'description', width:150,editable:true,sorttype:'text'},
                      {name:'status',index:'status', width:150,editable:true,sorttype:'text'}
                  ],
-                 rowNum:10,
-                 rowList:[20,60,100],
+                 rowList:[10, 20, 50, 100],
                  pager: "#pagingDiv",
                  viewrecords: true,
-				 sortname: 'firstName',
-				 sortorder: "desc",
+				 sortname: 'roleName',
+				 sortorder: "asc",
 				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
                  caption: "Role Management",
 				height:200,
@@ -159,8 +136,8 @@
                  rowList:[20,60,100],
                  pager: "#pagingDiv1",
                  viewrecords: true,
-				 sortname: 'firstName',
-				 sortorder: "desc",
+				 sortname: 'name',
+				 sortorder: "asc",
 				 editurl: "LoadJsonDataServlet?type=BS21 7RH", // this is dummy existing url
                  caption: "Available Operations",
 				height:200,
@@ -185,7 +162,7 @@
 
              });
 
-$('#clickmeId').click(function(){
+$('#save_role_operation').click(function(){
    var myGrid = $("#roleMgmtTable");
     selRowId = myGrid.jqGrid ('getGridParam', 'selrow');
     roleIdValue = myGrid.jqGrid ('getCell', selRowId, 'roleId');
@@ -229,7 +206,7 @@ $.ajax({
 
 	<table border=0>
 		<tr>
-			<td style="border-left: 1px solid #cdd0d4;"/>		
+			<td style="border-left: 3px solid #cdd0d4;"/>		
 
 			<td>
 					<table style="width:100%;">
@@ -246,6 +223,12 @@ $.ajax({
 										 <div style="float: left;padding:0px 0px 0px 20px">
 								              <table id="AvailableOperations"></table>
 								              <div id="pagingDiv1"></div>
+													 <div style="float:left;">
+											   		<div style="padding:10px 0px 0p 0px">
+												   		<div style="float: left;background: #7da600;"><button class="save_role_operation" id="save_role_operation">Save Role Operation</button></div>
+											   		</div>
+											   </div>
+									
 								          </div>
 							         </div>
 							  </div>
@@ -258,9 +241,8 @@ $.ajax({
 			<td style="border-left: 3px solid #cdd0d4;"/>
 	   </tr>
 	</table>
-	<div>
-		<div style="display:inline-block;"><a href="Home">Home</a></div>
-		<div id="clickmeId" style="display:inline-block;border: 1px solid #0b3e6f;background: #7da600;color: #40453a;cursor:pointer;margin-left:20px;">Save</div>
+	<div >
+		<div style="display:inline-block;" ><a href="Home">Home</a></div>
 	</div>
 </div>
 </form>

@@ -3,9 +3,13 @@ package com.ebus.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.ebus.entity.CustomResponse;
 import com.ebus.entity.LoginForm;
 import com.ebus.service.LoginService;
 import com.ebus.service.OrganizationService;
@@ -117,14 +121,27 @@ public class LoginController {
     }
     
     @RequestMapping(value="/usersList", method = GET)
-	public @ResponseBody String listBooks() {
+	public @ResponseBody CustomResponse listUsers(HttpServletRequest request) {
+    	int page = 0;
+    	int rows = 0;
+    	String sidx = null;
+    	String sord = null;
+    	Enumeration<String> e = request.getParameterNames();
+    	while(e.hasMoreElements()) {
+    		String param = (String) e.nextElement();
+    		if(param.equals("page")) {
+    			page = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("rows")) {
+    			rows = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("sidx")) {
+    			sidx = request.getParameter(param);
+    		} else if(param.equals("sord")) {
+    			sord = request.getParameter(param);
+    		}
+    	}
     	// Retrieve all users from the service
-    	List<LoginForm> users = loginService.getUsers();
-    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonArray = gson.toJson(users);
-        jsonArray = "{\"page\":1,\"total\":\"2\",\"records\":"
-                + users.size() + ",\"rows\":" + jsonArray + "}";
-    	return jsonArray;
+    	CustomResponse response = loginService.getUsers(page, rows, sidx, sord);
+    	return response;
 	}
     
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ebus.entity.CustomResponse;
 import com.ebus.entity.LoginForm;
 import com.ebus.entity.Operations;
 import com.ebus.entity.Role;
@@ -52,14 +53,27 @@ public class RoleController {
     }
 	
 	@RequestMapping(value="/rolesList", method = GET)
-	public @ResponseBody String listRoles() {
-    	// Retrieve all users from the service
-    	List<Role> roles = roleService.getRoles();
-    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonArray = gson.toJson(roles);
-        jsonArray = "{\"page\":1,\"total\":\"2\",\"records\":"
-                + roles.size() + ",\"rows\":" + jsonArray + "}";
-    	return jsonArray;
+	public @ResponseBody CustomResponse listRoles(HttpServletRequest request) {
+		int page = 0;
+    	int rows = 0;
+    	String sidx = null;
+    	String sord = null;
+    	Enumeration<String> e = request.getParameterNames();
+    	while(e.hasMoreElements()) {
+    		String param = (String) e.nextElement();
+    		if(param.equals("page")) {
+    			page = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("rows")) {
+    			rows = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("sidx")) {
+    			sidx = request.getParameter(param);
+    		} else if(param.equals("sord")) {
+    			sord = request.getParameter(param);
+    		}
+    	}
+    	// Retrieve all roles from the service
+    	CustomResponse response = roleService.getRoles(page, rows, sidx, sord);
+    	return response;
 	}
 	
 	/**

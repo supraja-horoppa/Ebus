@@ -1,20 +1,12 @@
 package com.ebus.entity;
 
-import java.util.List;
-
-/**
- * 
- * @author Aliaksei Yaustratsyeu 
- *
- */
-public class TableModel<T> {
+public class TableModel {
     private int pageNumber;
     private int pagesAmount;
     private int recordsTotalAmount;
     private int fromIndex;
     private int toIndex;
-    private List<T> rows;
-    
+   
     /**
      * Constructor for creation of table model.
      * 
@@ -24,8 +16,7 @@ public class TableModel<T> {
      * @param sortedColumnIndex the index of column which we are going to sort by
      * @param sortOrder the sort order 
      */
-    public TableModel(int pageNumber, int rowsAmountLimit, int recordsTotalAmount, 
-            String sortedColumnIndex, String sortOrder) {
+    public TableModel(int pageNumber, int rowsAmountLimit, int recordsTotalAmount) {
         
         this.recordsTotalAmount = recordsTotalAmount;
         
@@ -99,12 +90,5 @@ public class TableModel<T> {
     public int getPagesAmount() {
         return pagesAmount;
     }
-    
-    public List<T> getRows() {
-        return rows;
-    }
-
-    public void setRows(List<T> rows) {
-        this.rows = rows;
-    }
+   
 }

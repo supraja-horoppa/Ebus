@@ -10,7 +10,7 @@ public interface LoginDao {
 	
 	public LoginForm readLoginById(String userId);
 	
-	public List<LoginForm> readUsers();
+	public List<LoginForm> readUsers(String sidx, String sord);
 	
 	public LoginForm createUser(LoginForm user);
 	

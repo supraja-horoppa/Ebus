@@ -1,7 +1,6 @@
 package com.ebus.service;
 
-import java.util.List;
-
+import com.ebus.entity.CustomResponse;
 import com.ebus.entity.LoginForm;
 
 public interface LoginService {
@@ -10,7 +9,7 @@ public interface LoginService {
 	
 	public LoginForm getLoginById(String userId);
 	
-	public List<LoginForm> getUsers();
+	public CustomResponse getUsers(int page, int rows, String sidx, String sord);
 	
 	public LoginForm createUser(LoginForm user);
 	

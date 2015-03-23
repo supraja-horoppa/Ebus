@@ -57,12 +57,12 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<LoginForm> readUsers() {
+	public List<LoginForm> readUsers(String sidx, String sord) {
 		List<LoginForm> accts = new ArrayList<LoginForm>();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 	    tx = session.getTransaction();
-	    accts = (ArrayList<LoginForm>) session.createQuery("FROM LoginForm").list(); 
+	    accts = (ArrayList<LoginForm>) session.createQuery("FROM LoginForm order by "+sidx+" "+sord).list(); 
 	    tx.commit();
 	    session.close();
 		return accts;

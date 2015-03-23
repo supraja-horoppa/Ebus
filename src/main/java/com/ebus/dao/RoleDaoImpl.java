@@ -39,12 +39,12 @@ public class RoleDaoImpl implements RoleDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Role> readRoles() {
+	public List<Role> readRoles(String sidx, String sord) {
 		List<Role> roles = new ArrayList<Role>();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 	    tx = session.getTransaction();
-	    roles = (ArrayList<Role>) session.createQuery("FROM Role").list(); 
+	    roles = (ArrayList<Role>) session.createQuery("FROM Role order by "+sidx+" "+sord).list(); 
 	    tx.commit();
 	    session.close();
 		return roles;
@@ -80,6 +80,18 @@ public class RoleDaoImpl implements RoleDao{
 		tx.commit();
 		session.close();
 		return roleObj;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Role> readRoles() {
+		List<Role> roles = new ArrayList<Role>();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+	    tx = session.getTransaction();
+	    roles = (ArrayList<Role>) session.createQuery("FROM Role").list(); 
+	    tx.commit();
+	    session.close();
+		return roles;
 	}
 
 }

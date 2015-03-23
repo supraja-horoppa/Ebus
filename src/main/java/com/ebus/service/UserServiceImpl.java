@@ -23,13 +23,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public List<User> getUsers(TableModel<User> tableModel) {
-        
-        int fromIndex = tableModel.getFromIndex();
-        int toIndex = tableModel.getToIndex();
-        
-        return users.subList(fromIndex, toIndex);
-    }
+    
 
     public int getUsersAmount() {
         return users.size();
