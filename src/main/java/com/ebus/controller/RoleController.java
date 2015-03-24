@@ -157,14 +157,27 @@ public class RoleController {
     }
     
     @RequestMapping(value="/optsList", method = GET)
-	public @ResponseBody String listOpts() {
-    	// Retrieve all users from the service
-    	List<Operations> opts = operationsService.getOperations();
-    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonArray = gson.toJson(opts);
-        jsonArray = "{\"page\":1,\"total\":\"2\",\"records\":"
-                + opts.size() + ",\"rows\":" + jsonArray + "}";
-    	return jsonArray;
+	public @ResponseBody CustomResponse listOpts(HttpServletRequest request) {
+    	int page = 0;
+    	int rows = 0;
+    	String sidx = null;
+    	String sord = null;
+    	Enumeration<String> e = request.getParameterNames();
+    	while(e.hasMoreElements()) {
+    		String param = (String) e.nextElement();
+    		if(param.equals("page")) {
+    			page = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("rows")) {
+    			rows = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("sidx")) {
+    			sidx = request.getParameter(param);
+    		} else if(param.equals("sord")) {
+    			sord = request.getParameter(param);
+    		}
+    	}
+    	// Retrieve all roles from the service
+    	CustomResponse response = operationsService.getOperations(page, rows, sidx, sord);
+    	return response;
 	}
 
 }

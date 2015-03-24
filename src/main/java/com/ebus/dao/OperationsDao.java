@@ -5,6 +5,6 @@ import com.ebus.entity.Operations;
 
 public interface OperationsDao {
 	
-	public List<Operations> readOperations();
-
+	public List<Operations> readOperations(String sidx, String sord);
+	
 }

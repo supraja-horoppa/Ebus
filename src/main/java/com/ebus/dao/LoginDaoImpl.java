@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ebus.dao.LoginDao;
 import com.ebus.entity.LoginForm;
+import com.ebus.entity.Organization;
 
 @Repository
 public class LoginDaoImpl implements LoginDao {
@@ -27,12 +28,11 @@ public class LoginDaoImpl implements LoginDao {
 		session.beginTransaction();
 		tx = session.getTransaction();
 		String hql = "FROM LoginForm E WHERE E.username = '"+username+"'";
-		Query query = session.createQuery(hql);
-		List results = query.list();
-		Iterator it = results.iterator();
+		ArrayList<LoginForm> accts = (ArrayList<LoginForm>)session.createQuery(hql).list();
+		Iterator it = accts.iterator();
 		LoginForm login = null;
 		while(it.hasNext()) {
-			login =(LoginForm) it.next();
+			login = (LoginForm) it.next();
 		}
 		tx.commit();
 		session.close();
@@ -44,9 +44,8 @@ public class LoginDaoImpl implements LoginDao {
 		session.beginTransaction();
 		tx = session.getTransaction();
 		String hql = "FROM LoginForm E WHERE E.id = '"+userId+"'";
-		Query query = session.createQuery(hql);
-		List results = query.list();
-		Iterator it = results.iterator();
+		ArrayList<LoginForm> accts = (ArrayList<LoginForm>) session.createQuery(hql).list();
+		Iterator it = accts.iterator();
 		LoginForm login = null;
 		while(it.hasNext()) {
 			login =(LoginForm) it.next();

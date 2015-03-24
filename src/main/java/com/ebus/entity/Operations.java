@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product.cl_operations")
+@Table(name="dbo.cl_operations")
 public class Operations {
 	@Id
     @Column(name="id")

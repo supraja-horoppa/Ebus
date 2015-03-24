@@ -132,8 +132,7 @@
                      {name:'description',index:'description', width:300,editable:true,sorttype:'text'}
                      
                  ],
-                 rowNum:20,
-                 rowList:[20,60,100],
+                 rowList:[10,20,60,100],
                  pager: "#pagingDiv1",
                  viewrecords: true,
 				 sortname: 'name',

@@ -17,14 +17,15 @@ public class OperationsDaoImpl implements OperationsDao{
 	Transaction tx = null;
 
 	@SuppressWarnings("unchecked")
-	public List<Operations> readOperations() {
+	public List<Operations> readOperations(String sidx, String sord) {
 		List<Operations> opts = new ArrayList<Operations>();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 	    tx = session.getTransaction();
-	    opts = (ArrayList<Operations>) session.createQuery("FROM Operations").list(); 
+	    opts = (ArrayList<Operations>) session.createQuery("FROM Operations order by "+sidx+" "+sord).list(); 
 	    tx.commit();
 	    session.close();
 		return opts;
 	}
+	
 }

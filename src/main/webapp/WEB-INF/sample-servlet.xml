@@ -35,10 +35,11 @@
     
    <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost/product" />
-		<property name="username" value="postgres" />
-		<property name="password" value="root" />
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://localhost;databaseName=ebus;instaneName=NOVUM-SUPRAJA-P" />
+		<property name="username" value="ebus" />
+		<property name="password" value="supraja"/>
+		
 	</bean>
 	
 	<bean id="txManager"

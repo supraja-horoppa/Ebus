@@ -113,6 +113,13 @@
 			<version>9.1-901.jdbc4</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<dependency>
+          <groupId>com.microsoft.sqlserver</groupId>
+          <artifactId>sqljdbc4</artifactId>
+          <version>4.0</version>
+        </dependency>
+        
 		<!-- Apache lang utils -->
 		<dependency>
 			<groupId>commons-lang</groupId>
