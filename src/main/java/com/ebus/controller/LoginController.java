@@ -41,7 +41,6 @@ public class LoginController {
     public String viewRegistration(Map<String, Object> model){
     	LoginForm loginForm = new LoginForm();
     	ArrayList<String> orgnames = orgService.getOrganizations();
-    	System.out.println("orgnames is "+ orgnames);
     	model.put("loginForm", loginForm);
         model.put("organizationList", orgnames);
         return "login";
@@ -71,8 +70,6 @@ public class LoginController {
     @RequestMapping(value = "/usersList", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void adduser(@RequestBody String login) {
-    	System.out.println("login is "+login);
-    	System.out.println("in add controller");
     	LoginForm loginObj = new LoginForm(login);
     	LoginForm user = loginService.createUser(loginObj);
     	
@@ -91,7 +88,6 @@ public class LoginController {
 			e.printStackTrace();
 		}
     	LoginForm user = loginService.getLoginById(id);
-    	System.out.println("user is "+user);
     	user.updateByJson(login);
     	LoginForm userObj = loginService.updateUser(id, user);
     	
@@ -100,9 +96,7 @@ public class LoginController {
     @RequestMapping(value = "/usersList/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteuser(@PathVariable("id") String id,Model model, LoginForm login) {
-    	System.out.println("in delete user");
     	boolean user = loginService.deleteUser(id);
-    	System.out.println("user is deleted "+user);
     	
     }
 

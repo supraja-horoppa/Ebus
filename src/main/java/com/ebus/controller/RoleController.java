@@ -90,15 +90,13 @@ public class RoleController {
     		output=output+"<option value='"+role.getRoleId()+"'>"+role.getRoleName()+"</option>";
     	}
     	output = output+"</select>";
-        System.out.println("roles are "+output);
-       	return output;
+        return output;
 	}
 	
 	@RequestMapping(value="/roleOperationsList", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	
 	public void createRoleOperations(@RequestParam(value="roleId")  String roleId,@RequestParam(value="avaOpList") String avaOpList) {
-    	System.out.println("--------------------"+roleId +"------"+avaOpList);
     	List<RoleOperation> roleOpEntityList = new ArrayList<RoleOperation>();
     	if(roleId!=null && avaOpList!=null){
     		String[] avaOpIdsList = avaOpList.split(",");
@@ -110,7 +108,7 @@ public class RoleController {
     			RoleOperation roleOpr = new RoleOperation();
     			roleOpr.setRoleOperationId(roleOperationId);
     			roleOpEntityList.add(roleOpr);
-    			System.out.println("roleOpEntityList--------"+roleOpEntityList);
+    			
     		}
     		roleOperationService.createRoleOperation(roleOpEntityList);
     	}else{
@@ -144,17 +142,12 @@ public class RoleController {
     }
     
     public void editRole(String id, Role role) {
-    	System.out.println("in edit controller");
     	Role roleObj = roleService.updateRole(id, role);
-    	
-    }
+       }
     
    public void deleteRole(String id) {
-    	System.out.println("in delete user");
     	boolean roleStatus = roleService.deleteRole(id);
-    	System.out.println("role is deleted "+roleStatus);
-    	
-    }
+       }
     
     @RequestMapping(value="/optsList", method = GET)
 	public @ResponseBody CustomResponse listOpts(HttpServletRequest request) {
