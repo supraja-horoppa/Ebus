@@ -2,6 +2,7 @@ package com.ebus.dao;
 
 import java.util.List;
 
+import com.ebus.entity.DailyAuditReport;
 import com.ebus.entity.LoginForm;
 
 public interface LoginDao {
@@ -17,5 +18,5 @@ public interface LoginDao {
 	public boolean deleteUser(String userId);
 	
 	public LoginForm updateUser(String userId,LoginForm user);
-
+	
 }

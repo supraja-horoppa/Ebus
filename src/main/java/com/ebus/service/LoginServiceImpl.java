@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.ebus.dao.LoginDao;
 import com.ebus.entity.CustomResponse;
+import com.ebus.entity.DailyAuditReport;
 import com.ebus.entity.LoginForm;
 import com.ebus.entity.Role;
 import com.ebus.entity.TableModel;
@@ -78,5 +79,6 @@ public class LoginServiceImpl implements LoginService {
     	response.setTotal(String.valueOf(tableModel.getPagesAmount()) );
     	return response;
 	}
+
 
 }

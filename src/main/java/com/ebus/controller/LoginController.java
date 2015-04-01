@@ -50,7 +50,7 @@ public class LoginController {
     public String create(Model model, LoginForm loginForm, BindingResult result, RedirectAttributes redirectAttributes) {
 
     	LoginForm login = loginService.getLoginByUsername(loginForm.getUsername());
-    	    	
+    	//loginService.dailyAuditReport();    	
 		if(login == null) {
 			return "loginfail";
 		}

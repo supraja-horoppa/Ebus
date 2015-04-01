@@ -2,11 +2,23 @@ package com.ebus.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,11 +35,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ebus.entity.CustomResponse;
+import com.ebus.entity.DailyAuditReport;
 import com.ebus.entity.LoginForm;
 import com.ebus.entity.Operations;
 import com.ebus.entity.Role;
 import com.ebus.entity.RoleOperation;
 import com.ebus.entity.RoleOperation.RoleOperationId;
+import com.ebus.service.LoginService;
 import com.ebus.service.OperationsService;
 import com.ebus.service.RoleOperationService;
 import com.ebus.service.RoleService;
@@ -39,6 +53,10 @@ public class RoleController {
 	
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	LoginService loginService;
+	
 	@Autowired
 	RoleOperationService roleOperationService;
 	

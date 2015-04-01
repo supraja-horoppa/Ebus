@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a44144d6-8450-47ec-b623-e0b44c4d85f6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="228"/>
+	<style name="Heading 2" fontSize="14" isBold="true" isItalic="true"/>
+	<style name="Heading 3" fontSize="14" isBold="true"/>
+	<style name="Heading 1" fontSize="16" isBold="true"/>
+	<parameter name="selectedLocation" class="java.lang.String"/>
+	<parameter name="selectedDate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="busNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[busNumber]]></fieldDescription>
+	</field>
+	<field name="duty" class="java.lang.String">
+		<fieldDescription><![CDATA[duty]]></fieldDescription>
+	</field>
+	<field name="dutyDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[dutyDate]]></fieldDescription>
+	</field>
+	<field name="dutyId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[dutyId]]></fieldDescription>
+	</field>
+	<field name="dutySignOff" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[dutySignOff]]></fieldDescription>
+	</field>
+	<field name="dutySignOn" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[dutySignOn]]></fieldDescription>
+	</field>
+	<field name="employeeName" class="java.lang.String">
+		<fieldDescription><![CDATA[employeeName]]></fieldDescription>
+	</field>
+	<field name="employeeNo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[employeeNo]]></fieldDescription>
+	</field>
+	<field name="equipmentNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[equipmentNumber]]></fieldDescription>
+	</field>
+	<field name="equipmentType" class="java.lang.Byte">
+		<fieldDescription><![CDATA[equipmentType]]></fieldDescription>
+	</field>
+	<field name="firstJournery" class="java.lang.Short">
+		<fieldDescription><![CDATA[firstJournery]]></fieldDescription>
+	</field>
+	<field name="firstRoute" class="java.lang.String">
+		<fieldDescription><![CDATA[firstRoute]]></fieldDescription>
+	</field>
+	<field name="location" class="java.lang.String">
+		<fieldDescription><![CDATA[location]]></fieldDescription>
+	</field>
+	<field name="locationCode" class="java.lang.String">
+		<fieldDescription><![CDATA[locationCode]]></fieldDescription>
+	</field>
+	<field name="modOffReaderId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[modOffReaderId]]></fieldDescription>
+	</field>
+	<field name="modOnReaderId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[modOnReaderId]]></fieldDescription>
+	</field>
+	<field name="modSignOffLoc" class="java.lang.String">
+		<fieldDescription><![CDATA[modSignOffLoc]]></fieldDescription>
+	</field>
+	<field name="modSignOffTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[modSignOffTime]]></fieldDescription>
+	</field>
+	<field name="modSignOnLoc" class="java.lang.String">
+		<fieldDescription><![CDATA[modSignOnLoc]]></fieldDescription>
+	</field>
+	<field name="modSignOnTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[modSignOnTime]]></fieldDescription>
+	</field>
+	<field name="module" class="java.lang.Integer">
+		<fieldDescription><![CDATA[module]]></fieldDescription>
+	</field>
+	<field name="moduleId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[moduleId]]></fieldDescription>
+	</field>
+	<field name="passes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[passes]]></fieldDescription>
+	</field>
+	<field name="revenue" class="java.lang.Integer">
+		<fieldDescription><![CDATA[revenue]]></fieldDescription>
+	</field>
+	<field name="tickets" class="java.lang.Integer">
+		<fieldDescription><![CDATA[tickets]]></fieldDescription>
+	</field>
+	<variable name="employeeName_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{employeeName}]]></variableExpression>
+	</variable>
+	<variable name="tickets_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="passes_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="revenue_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="revenue_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="passes_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="tickets_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="revenue_3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="revenue_4" class="java.lang.Integer" resetType="Group" resetGroup="employeename" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="passes_3" class="java.lang.Integer" resetType="Group" resetGroup="employeename" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="tickets_3" class="java.lang.Integer" resetType="Group" resetGroup="employeename" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="tickets_4" class="java.lang.Integer" resetType="Group" resetGroup="employeename" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="revenue_5" class="java.lang.Integer" resetType="Group" resetGroup="employeename" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="passes_4" class="java.lang.Integer" resetType="Group" resetGroup="employeename" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="revenue_6" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="tickets_5" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="passes_5" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="revenue_7" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="tickets_6" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="passes_6" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="revenue_8" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="passes_7" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<variable name="tickets_7" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="revenue_9" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{revenue}]]></variableExpression>
+	</variable>
+	<variable name="tickets_8" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{tickets}]]></variableExpression>
+	</variable>
+	<variable name="passes_8" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{passes}]]></variableExpression>
+	</variable>
+	<group name="employeename">
+		<groupExpression><![CDATA[$F{employeeNo}]]></groupExpression>
+		<groupHeader>
+			<band height="43">
+				<staticText>
+					<reportElement x="17" y="20" width="51" height="20" uuid="2efa8089-08e3-4ccc-b3db-3b94e37397f4"/>
+					<text><![CDATA[Audit File:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="133" y="20" width="39" height="20" uuid="d03231a6-0c0e-4d26-aa47-2df48aaa9539"/>
+					<textFieldExpression><![CDATA[$F{modSignOnLoc}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="20" width="37" height="20" uuid="100bb423-3bac-4755-8731-7f47b1e548cd"/>
+					<textFieldExpression><![CDATA[$F{modSignOffLoc}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="186" y="20" width="100" height="20" uuid="8366b758-bd4c-47e7-a9ef-a21458da2504"/>
+					<textFieldExpression><![CDATA[$F{modSignOnTime}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="371" y="20" width="100" height="20" uuid="db8132b7-bab1-4456-8211-586e35b1fcd2"/>
+					<textFieldExpression><![CDATA[$F{modSignOffTime}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="172" y="20" width="22" height="20" uuid="7fb3f7a9-7022-4513-bdeb-9f8f8b56d4dd"/>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="349" y="20" width="22" height="20" uuid="cb3d9c48-2269-4a5f-b091-cf0474326484"/>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="68" y="20" width="53" height="20" uuid="e8127a80-45bc-41f2-8f17-817a1ccc042f"/>
+					<textFieldExpression><![CDATA[$F{module}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="10" y="0" width="76" height="20" backcolor="#F7B043" uuid="942d5215-c952-4824-8b4d-8d5504df9abe"/>
+					<textFieldExpression><![CDATA[$F{employeeNo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="86" y="0" width="454" height="20" backcolor="#F7B043" uuid="88e9352d-341b-441e-b0dd-ed854d30030e"/>
+					<textFieldExpression><![CDATA[$F{employeeName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="59">
+				<staticText>
+					<reportElement x="258" y="35" width="81" height="20" uuid="b9b2fe30-46c0-4bad-abaa-93a73f40b335"/>
+					<text><![CDATA[Driver Total:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="371" y="13" width="169" height="1" uuid="3e53d3c6-233c-4e2f-a5bb-11241a5098a8"/>
+				</line>
+				<line>
+					<reportElement x="371" y="34" width="169" height="1" uuid="ca953c4b-0f17-480a-8eca-aa05cac315c6"/>
+				</line>
+				<line>
+					<reportElement x="371" y="54" width="169" height="1" uuid="d65c04be-35e0-49fe-a0c7-a92e1dc4c418"/>
+				</line>
+				<elementGroup>
+					<elementGroup>
+						<elementGroup/>
+					</elementGroup>
+				</elementGroup>
+				<textField>
+					<reportElement x="388" y="15" width="44" height="20" uuid="8ff73fba-2636-4d51-b795-a7d7bae3e6c6"/>
+					<textFieldExpression><![CDATA[$V{revenue_4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="486" y="15" width="54" height="20" uuid="6cc2cf87-a06c-4c58-83c3-2cb63a0a3e5c"/>
+					<textFieldExpression><![CDATA[$V{passes_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="432" y="15" width="54" height="20" uuid="cc7bd4be-3c75-4d9b-98d3-e3f2b1037d70"/>
+					<textFieldExpression><![CDATA[$V{tickets_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="432" y="35" width="54" height="20" uuid="2117ac7c-aec4-4d84-ab56-60a11b38f1c8"/>
+					<textFieldExpression><![CDATA[$V{tickets_4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="388" y="35" width="43" height="20" uuid="0883005f-3111-4ea7-a270-24bfdbd4533a"/>
+					<textFieldExpression><![CDATA[$V{revenue_5}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="486" y="35" width="54" height="20" uuid="c1b95cb4-d8e5-44fb-91e7-b6285c4538c7"/>
+					<textFieldExpression><![CDATA[$V{passes_4}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement style="Heading 1" mode="Opaque" x="5" y="48" width="535" height="23" backcolor="#99CCFF" uuid="5225d609-4ac4-44df-a3bc-4f4ce5035ecb"/>
+				<text><![CDATA[Atamelang MERIT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<line>
+				<reportElement x="5" y="32" width="535" height="1" uuid="66f36583-9cf8-4a62-9392-7665e5daa519"/>
+			</line>
+			<staticText>
+				<reportElement style="Heading 3" x="5" y="8" width="535" height="24" uuid="40cdc00b-fd49-4701-b5a8-b26f0507a18b"/>
+				<text><![CDATA[Daily Audit Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="10" width="100" height="20" uuid="d9176709-b07a-46de-b75e-192727ecde8c"/>
+				<text><![CDATA[Selected Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="30" width="100" height="20" uuid="b03829be-99af-49d4-9548-f9efae194eac"/>
+				<text><![CDATA[Selected Location:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="5" y="50" width="535" height="1" uuid="aa67840f-0c8c-4746-8111-f918cdd04978"/>
+			</line>
+			<staticText>
+				<reportElement x="17" y="63" width="35" height="20" uuid="bfe5aa5d-17e8-4233-98ec-32abaca1c15f"/>
+				<text><![CDATA[Duty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="63" width="34" height="20" uuid="b50914f5-833b-4842-a892-7d84ae6c18f3"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="52" width="47" height="31" uuid="36d643a0-7c50-491b-8c31-65c6cffd8bc3"/>
+				<text><![CDATA[Sign
+ On]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="52" width="38" height="31" uuid="64dad227-e685-4838-b6db-f5e46c4fd8c0"/>
+				<text><![CDATA[Sign
+ Off]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="63" width="49" height="20" uuid="254dc358-9444-4f0a-963f-2f4de39892c7"/>
+				<text><![CDATA[Bus No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="52" width="51" height="31" uuid="073f5703-e300-40da-a756-8d42b14671a7"/>
+				<text><![CDATA[Equip.
+Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="63" width="62" height="20" uuid="9e28782e-1f45-4ffa-8e3c-81c0d051407f"/>
+				<text><![CDATA[First Route]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="52" width="56" height="31" uuid="41fa4f62-79b7-4d75-b5ac-73aa885bbd63"/>
+				<text><![CDATA[First
+Journey]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="63" width="43" height="20" uuid="50abd93a-2da3-4d27-b4e1-08e5515fccdc"/>
+				<text><![CDATA[Revenue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="52" width="50" height="31" uuid="768b204b-548f-4641-b6b2-d47c0e401dbe"/>
+				<text><![CDATA[Cash
+Tickets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="52" width="58" height="31" uuid="f573e1b0-1e4a-4c78-87a6-688232009e90"/>
+				<text><![CDATA[Other
+Boardings]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="92" width="530" height="1" uuid="2b473b99-35e3-4483-b627-e33ac88a3e18"/>
+			</line>
+			<textField>
+				<reportElement mode="Opaque" x="10" y="93" width="530" height="20" forecolor="#F7FAEA" backcolor="#668014" uuid="d9acbadc-4c46-4428-998d-3f6745d33970"/>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="30" width="100" height="20" uuid="422a08dd-e480-4790-8529-f3df4677f0ed"/>
+				<textFieldExpression><![CDATA[$P{selectedLocation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="11" width="100" height="20" uuid="72790836-ebaa-463a-a275-f9fcec346fbd"/>
+				<textFieldExpression><![CDATA[$P{selectedDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="0" width="34" height="19" uuid="1be01db4-417c-4895-b30f-a2df0a0b1219"/>
+				<textFieldExpression><![CDATA[$F{duty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="0" width="34" height="20" uuid="157c19fd-b17d-4da2-86ba-189f15612ac3"/>
+				<textFieldExpression><![CDATA[$F{dutyDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="0" width="47" height="20" uuid="60ea28e1-b1ef-4452-a488-8cc052f33e9c"/>
+				<textFieldExpression><![CDATA[$F{dutySignOn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="0" width="38" height="20" uuid="be28ed40-ddb8-4d33-9656-2e4bbda0f97b"/>
+				<textFieldExpression><![CDATA[$F{dutySignOff}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="51" height="20" uuid="d6b08ea8-5533-4974-bc25-706ca040ca6e"/>
+				<textFieldExpression><![CDATA[$F{equipmentNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="331" y="0" width="57" height="20" uuid="37d55c42-3d8a-4118-800b-f49d91eb8083"/>
+				<textFieldExpression><![CDATA[$F{firstJournery}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="0" width="54" height="20" uuid="07e863c2-8349-49b0-9b56-16ca32deb7cb"/>
+				<textFieldExpression><![CDATA[$F{passes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="54" height="20" uuid="e3035266-284d-4ec7-b6ff-641bdf83900f"/>
+				<textFieldExpression><![CDATA[$F{tickets}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="49" height="20" uuid="e6266cc7-c907-4cc4-8e42-1e59928a68eb"/>
+				<textFieldExpression><![CDATA[$F{busNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="60" height="20" uuid="47afc4ca-8d54-4a4d-9779-55f7bedbc300"/>
+				<textFieldExpression><![CDATA[$F{firstRoute}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<textField>
+					<reportElement x="388" y="0" width="43" height="20" uuid="3a50ff9f-5a6d-42ac-b91b-e28775b0663c"/>
+					<textFieldExpression><![CDATA[$F{revenue}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</detail>
+	<summary>
+		<band height="223" splitType="Stretch">
+			<textField>
+				<reportElement x="185" y="0" width="85" height="20" uuid="9056834a-e697-4997-9606-36177501a388"/>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="0" width="100" height="20" uuid="c6abb553-32b2-4297-b40e-913d451d4b36"/>
+				<text><![CDATA[ETM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="20" width="100" height="20" uuid="40672e16-82af-40c4-866c-ed7de5364cec"/>
+				<text><![CDATA[POS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="40" width="100" height="20" uuid="30a4a446-e419-4e5f-95bf-c4b86bc3f347"/>
+				<text><![CDATA[HHT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="60" width="100" height="20" uuid="6c513734-1b37-4c23-9dfe-f7d0f25995ab"/>
+				<text><![CDATA[TVM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="80" width="100" height="20" uuid="a5ea0e72-5bfa-4ed2-89b8-109230c5a96d"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="0" width="43" height="20" uuid="f60263af-a0cb-43d6-b622-3d28c894198b"/>
+				<textFieldExpression><![CDATA[$V{revenue_6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="54" height="20" uuid="55fade73-8413-43d0-bc31-f71dc4a8e658"/>
+				<textFieldExpression><![CDATA[$V{tickets_5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="0" width="54" height="20" uuid="775d3bbd-450d-4af2-a183-bcc3af7a7fb6"/>
+				<textFieldExpression><![CDATA[$V{passes_5}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="388" y="20" width="44" height="20" uuid="b87a660c-b527-47a0-ab0a-cb5a361ae6e3"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="20" width="54" height="20" uuid="23650afb-8ecd-4996-935e-13f949dd09e9"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="20" width="54" height="20" uuid="11f458b3-94b3-4ec4-88a1-7d48abe44219"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="40" width="43" height="20" uuid="d410bfc5-dcd3-45c6-8309-83bc8d46bd20"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="40" width="55" height="20" uuid="b09970ae-802d-4ab3-b56e-8acbf9955313"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="40" width="54" height="20" uuid="c6aab242-5904-4c1a-8f18-14918b28fc0f"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="60" width="43" height="20" uuid="6e31da85-8265-476f-b818-8eb941f916a6"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="60" width="54" height="20" uuid="138f859c-0eb0-43b5-81cb-263335aac6ee"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="60" width="54" height="20" uuid="b363aa24-4549-4952-990b-bc29442aae61"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="80" width="43" height="20" uuid="e75e9e42-d0c1-45c0-b84f-99198f2983f5"/>
+				<textFieldExpression><![CDATA[$V{revenue_7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="80" width="54" height="20" uuid="2d73b318-a86d-4d0d-82b8-b9c9a77174a5"/>
+				<textFieldExpression><![CDATA[$V{tickets_6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="80" width="54" height="20" uuid="ea8a2e6c-85dc-482f-8d2a-b9b54e1e83fb"/>
+				<textFieldExpression><![CDATA[$V{passes_6}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="371" y="113" width="169" height="1" uuid="abbc7bb9-f65c-445b-b62b-0254ce8bdf8e"/>
+			</line>
+			<staticText>
+				<reportElement x="191" y="121" width="85" height="20" uuid="7c40e8a9-1bd3-497f-acd4-79854bfd929e"/>
+				<text><![CDATA[All Depots]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="121" width="94" height="20" uuid="c715710d-c8f4-4238-a49a-1c54c0cf2e68"/>
+				<text><![CDATA[ETM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="141" width="94" height="20" uuid="992dfd82-935d-4863-9de0-effa21cc1ee1"/>
+				<text><![CDATA[POS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="161" width="94" height="20" uuid="1dbd1b8c-458d-47bd-b813-ffc442e97cbc"/>
+				<text><![CDATA[HHT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="181" width="94" height="20" uuid="9711f4d9-14c3-48ef-b49a-3a0b49216c9a"/>
+				<text><![CDATA[TVM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="201" width="94" height="20" uuid="38f5b089-d5fc-4f91-8f83-688bc116eb75"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="121" width="43" height="20" uuid="84bd1844-da60-4f3c-8cc7-007fcbaacf19"/>
+				<textFieldExpression><![CDATA[$V{revenue_8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="121" width="54" height="20" uuid="7914e66c-3578-4874-bd8d-977718c5a22d"/>
+				<textFieldExpression><![CDATA[$V{passes_7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="121" width="55" height="20" uuid="8d13df7d-e3a7-4370-a797-53b66288dde0"/>
+				<textFieldExpression><![CDATA[$V{tickets_7}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="388" y="141" width="44" height="20" uuid="d7ad2de5-b527-47df-8c55-542018c64a0c"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="141" width="55" height="20" uuid="3135e650-f0ff-41a5-927b-97c7516f294c"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="141" width="56" height="20" uuid="b7ab1e8c-aae9-4b2a-8593-23324be1695d"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="161" width="43" height="20" uuid="19fb09f7-c431-4f80-8970-2681a688a436"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="161" width="54" height="20" uuid="93a57a05-9381-40e7-9294-a132e0b2243b"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="161" width="56" height="20" uuid="28c52838-dabc-449b-84e7-f305d7ed01b8"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="181" width="43" height="20" uuid="e05c8026-d91c-470d-864f-7efdd516d9a3"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="181" width="54" height="20" uuid="1b0f299c-b649-4088-bb29-d6954bbbb0e3"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="181" width="56" height="20" uuid="3b377b8c-877d-4329-b412-8f1fc72dc098"/>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="388" y="201" width="44" height="20" uuid="15a6ba79-f72f-411d-bed5-c48731c3c426"/>
+				<textFieldExpression><![CDATA[$V{revenue_9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="201" width="54" height="20" uuid="c5ba5620-2d88-4543-b030-c9fee8d4f3f4"/>
+				<textFieldExpression><![CDATA[$V{tickets_8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="201" width="54" height="20" uuid="cb9bf8bb-0b78-4654-ab4a-89c6c21af6b2"/>
+				<textFieldExpression><![CDATA[$V{passes_8}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+	<noData>
+		<band height="101">
+			<staticText>
+				<reportElement style="Heading 1" mode="Opaque" x="5" y="0" width="535" height="23" backcolor="#99CCFF" uuid="64b7be4a-b4bb-4e55-b048-3dff93f99186"/>
+				<text><![CDATA[Atamelang MERIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Heading 3" x="5" y="23" width="535" height="24" uuid="896f093e-f62f-4a44-bf37-eafc25f51d20"/>
+				<text><![CDATA[Daily Audit Report]]></text>
+			</staticText>
+			<line>
+				<reportElement x="5" y="46" width="550" height="1" uuid="09fb41c0-fd78-43e3-99ac-9cc96675124d"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="47" width="100" height="20" uuid="3fbdfea4-7294-4a37-bd48-f1c54480c038"/>
+				<text><![CDATA[Selected Location:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="67" width="100" height="20" uuid="491063f7-cf63-48c3-b6f2-99030acb4e4b"/>
+				<text><![CDATA[Selected Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="133" y="47" width="100" height="20" uuid="006f4d2e-8faa-4855-b60f-2903045e1171"/>
+				<textFieldExpression><![CDATA[$P{selectedLocation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="67" width="100" height="20" uuid="07816eea-cf81-48bc-a873-da517eeccf13"/>
+				<textFieldExpression><![CDATA[$P{selectedDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</noData>
+</jasperReport>

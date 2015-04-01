@@ -36,7 +36,7 @@
    <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://localhost;databaseName=ebus;instaneName=NOVUM-SUPRAJA-P" />
+		<property name="url" value="jdbc:sqlserver://localhost;databaseName=Merit_Atamelang;instaneName=NOVUM-SUPRAJA-P" />
 		<property name="username" value="ebus" />
 		<property name="password" value="supraja"/>
 		

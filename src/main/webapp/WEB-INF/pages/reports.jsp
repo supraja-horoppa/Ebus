@@ -6,23 +6,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
- <title>Ebus Admin</title>
- <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" />
- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
- <script src="<c:url value="/resources/js/script.js" />"></script>
+<title>Ebus Admin</title>
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-latest.min.js"
+	type="text/javascript"></script>
+<script src="<c:url value="/resources/js/script.js" />"></script>
+
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"></link>
+	
 </head>
 <body>
-<div id="header">
-<table width="1000">
-	<tr>
-		<td width="500"><h2>Ebus</h2></td>
-		<td width="500"><br/>
-		
-		</td>
-	</tr>
-</table>
-
-</div>
 <div id="w">
 <nav>
 		<ul id="nav">
@@ -50,8 +45,27 @@
 		</ul>
 	</nav>
 </div>
-
-
-
+	<div id="content">
+	<form method="post" action="dailyAuditReport">
+ 
+    <table>
+    <tr>
+        <td>Location	</td>
+        <td><input type="text" name="location"></input></td> 
+    </tr>
+    <tr>
+        <td>Date	</td>
+        <td><input type="date" data-icon="calender" name="date"></input></td>
+    </tr>
+   
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="Add">
+        </td>
+    </tr>
+</table>    
+     
+</form>
+</div>
 </body>
 </html>

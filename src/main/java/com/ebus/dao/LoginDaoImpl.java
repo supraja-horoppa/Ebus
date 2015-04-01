@@ -1,17 +1,24 @@
 package com.ebus.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryNonScalarReturn;
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ebus.dao.LoginDao;
+import com.ebus.entity.DailyAuditReport;
 import com.ebus.entity.LoginForm;
 import com.ebus.entity.Organization;
 
@@ -96,4 +103,5 @@ public class LoginDaoImpl implements LoginDao {
 		session.close();
 		return user;
 	}
+	
 }
