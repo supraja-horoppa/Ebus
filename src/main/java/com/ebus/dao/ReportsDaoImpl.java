@@ -44,7 +44,7 @@ public class ReportsDaoImpl implements ReportsDao{
            row.setDutyDate((Timestamp) map.get("DutyDate"));
            row.setModule((Integer) map.get("Module"));
            row.setModSignOnLoc((String) map.get("ModSignOnLoc"));
-           row.setDutySignOn((Timestamp) map.get("DutySignOn"));
+           row.setModSignOnTime((Timestamp) map.get("ModSignOnTime"));
            row.setModSignOffLoc((String) map.get("ModSignOffLoc"));
            row.setModSignOffTime((Timestamp) map.get("ModSignOffTime"));
            row.setDutySignOn((Timestamp) map.get("DutySignOn"));

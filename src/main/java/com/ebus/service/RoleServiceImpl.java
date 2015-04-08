@@ -31,6 +31,7 @@ public class RoleServiceImpl implements RoleService {
 		List<Role> roleRecords = new ArrayList<Role>();
         for(int i=tableModel.getFromIndex(); i< tableModel.getToIndex(); i++) {
         	roleRecords.add(roles.get(i));
+        	
         }
 		
 		CustomResponse response = new CustomResponse();

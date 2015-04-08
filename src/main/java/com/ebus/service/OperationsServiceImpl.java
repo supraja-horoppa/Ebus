@@ -29,5 +29,22 @@ public class OperationsServiceImpl implements OperationsService{
     	response.setTotal(String.valueOf(tableModel.getPagesAmount()) );
     	return response;
 	}
+	
+	public CustomResponse getOperationsByRoleId(String roleId, int page, int rows, String sidx, String sord) {
+		List<Operations> opts = operationsDao.readOperationsByRoleId(roleId, sidx, sord);
+		int totalRecords = opts.size();
+		TableModel tableModel = new TableModel(page,rows,totalRecords);
+		List<Operations> records = new ArrayList<Operations>();
+        for(int i=tableModel.getFromIndex(); i< tableModel.getToIndex(); i++) {
+        	records.add(opts.get(i));
+        }
+		
+		CustomResponse response = new CustomResponse();
+    	response.setRows(records);
+    	response.setRecords( String.valueOf(totalRecords));
+    	response.setPage(String.valueOf(page));
+    	response.setTotal(String.valueOf(tableModel.getPagesAmount()) );
+    	return response;
+	}
 
 }

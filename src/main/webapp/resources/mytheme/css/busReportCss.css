@@ -1,0 +1,71 @@
+.myButton {
+	background-color:#44c767;	
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:17px;	
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	width: 100px;
+	margin-top:20px;
+}
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.listItemCss{
+	cursor:pointer;
+}
+.listItemCss:hover {
+	background-color:#5cbf2a;
+}
+.listItemCss:active {
+	position:relative;
+	top:1px;
+}
+.selecedLocText{
+	color:#5cbf2a;
+}
+ #accordion-1{font-size: 14px;
+                }
+		 .ui-widget-content{
+			background:none;
+		}
+		ul{
+		list-style: none;
+		border:1px solid #18ab29;
+		width:200px;
+		text-align:left;
+		}
+		#leftListId, #rightListId,#addRemoveBtns{
+			display:inline-block;
+					}
+		#addRemoveBtns{
+		margin-left: 20px;
+		margin-right: 20px;		
+		vertical-align: middle;
+		  height: 330px;
+		}
+		#list1, #list2 {
+        width:200px;
+		height: 200px;
+    }
+	.listHeadingCls{
+		text-align:center;
+		font:Bold 20px Arial;
+		color:#5cbf2a;
+	}
+	.selectLocCls{
+		font:Bold 17px Arial;
+		color:#5cbf2a;
+		display:inline-block;
+		
+	}

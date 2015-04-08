@@ -115,23 +115,12 @@ public class RoleController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	
 	public void createRoleOperations(@RequestParam(value="roleId")  String roleId,@RequestParam(value="avaOpList") String avaOpList) {
-    	List<RoleOperation> roleOpEntityList = new ArrayList<RoleOperation>();
-    	if(roleId!=null && avaOpList!=null){
-    		String[] avaOpIdsList = avaOpList.split(",");
-    		for(int i=0; i<avaOpIdsList.length;i++){
-    			RoleOperationId roleOperationId = new RoleOperationId();
-    			roleOperationId.setRoleId(roleId);
-    			roleOperationId.setOperationId(avaOpIdsList[i]);
-    			
-    			RoleOperation roleOpr = new RoleOperation();
-    			roleOpr.setRoleOperationId(roleOperationId);
-    			roleOpEntityList.add(roleOpr);
-    			
-    		}
-    		roleOperationService.createRoleOperation(roleOpEntityList);
-    	}else{
-    		System.out.println("RoleId or OperationId's Null....");
-    	}
+    	Role role = roleService.getRoleById(roleId);
+		String operations = role.getOperations();
+		System.out.println("operations from db "+operations);
+		System.out.println("operations from ui "+avaOpList);
+		role.setOperations(avaOpList);
+		roleService.updateRole(roleId, role);
 	}
 	
 	@RequestMapping(value = "/rolesList", method = RequestMethod.POST)
@@ -188,6 +177,33 @@ public class RoleController {
     	}
     	// Retrieve all roles from the service
     	CustomResponse response = operationsService.getOperations(page, rows, sidx, sord);
+    	return response;
+	}
+    
+    @RequestMapping(value="/optsListByRoleId", method = GET)
+	public @ResponseBody CustomResponse listOptsByRoleId(HttpServletRequest request) {
+    	int page = 0;
+    	int rows = 0;
+    	String sidx = null;
+    	String sord = null;
+    	String roleId = null;
+    	Enumeration<String> e = request.getParameterNames();
+    	while(e.hasMoreElements()) {
+    		String param = (String) e.nextElement();
+    		if(param.equals("page")) {
+    			page = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("rows")) {
+    			rows = Integer.parseInt(request.getParameter(param));
+    		} else if(param.equals("sidx")) {
+    			sidx = request.getParameter(param);
+    		} else if(param.equals("sord")) {
+    			sord = request.getParameter(param);
+    		} else if(param.equals("roleId")) {
+    			roleId = request.getParameter(param);
+    		}
+    	}
+    	// Retrieve all roles from the service
+    	CustomResponse response = operationsService.getOperationsByRoleId(roleId, page, rows, sidx, sord);
     	return response;
 	}
 

@@ -36,12 +36,13 @@
                  url: "rolesList",
                  datatype: "json",
                  jsonReader: {repeatitems: false, id: "ref"},
-                 colNames:['Id','role Name','Description', 'Status'],
+                 colNames:['Id','role Name','Description', 'Status','operations'],
                  colModel:[
                            {name:'roleId', index:'roleId',width:150,editable:true,sorttype:'text',hidden:true},
                      {name:'roleName',index:'roleName', width:150,editable:true,sorttype:'text',editrules:{text:true},},
                      {name:'description',index:'description', width:150,editable:true,sorttype:'text'},
-                     {name:'status',index:'status', width:150,editable:true,sorttype:'text'}
+                     {name:'status',index:'status', width:150,editable:true,sorttype:'text'},
+                     {name:'operations', index:'operations', width:150,editable:true,sorttype:'text',hidden:true}
                  ],
                  rowList:[10, 20, 50, 100],
                  pager: "#pagingDiv",
@@ -56,19 +57,22 @@
                     // edit the row and save it on press "enter" key
                     grid.jqGrid('editRow',id,true,null,null, 'rolesList');
                 },
-                onSelectRow: function(id) {
-                    if (id && id !== lastSel) {
-                        // cancel editing of the previous selected row if it was in editing state.
-                        // jqGrid hold intern savedRow array inside of jqGrid object,
-                        // so it is safe to call restoreRow method with any id parameter
-                        // if jqGrid not in editing state
-                        if (typeof lastSel !== "undefined") {
-                            grid.jqGrid('restoreRow',lastSel);
+                
+                onSelectRow: function (rowid) {
+                        var operationIds = $(this).jqGrid("getCell", rowid, "operations").split(","),
+                        i, n = operationIds.length;
+                        gridavail.jqGrid("resetSelection");
+                        for (i = 0; i < n; i++) {
+                    	var rowIds = gridavail.jqGrid('getDataIDs');
+                    	for (j = 1; j <= rowIds.length; j++) {
+                    	var dataFromCellByColumnName = gridavail.jqGrid ('getCell', j, 'id');
+                            if (dataFromCellByColumnName == operationIds[i] ) {
+                            	gridavail.setSelection(j); 
+                            }
                         }
-                        lastSel = id;
                     }
-                }
-
+                },
+                
              });
 			
 			grid.jqGrid('navGrid',"#pagingDiv",{edit:true,add:true,del:true,search:false, refresh:false},
@@ -141,6 +145,7 @@
                  caption: "Available Operations",
 				height:200,
 				multiselect: true,
+				loadonce:true,
                 editurl: 'clientArray',
                 ondblClickRow: function(id, ri, ci) {
                     // edit the row and save it on press "enter" key
@@ -148,10 +153,6 @@
                 },
                 onSelectRow: function(id) {
                     if (id && id !== lastSel1) {
-                        // cancel editing of the previous selected row if it was in editing state.
-                        // jqGrid hold intern savedRow array inside of jqGrid object,
-                        // so it is safe to call restoreRow method with any id parameter
-                        // if jqGrid not in editing state
                         if (typeof lastSel1 !== "undefined") {
                             gridavail.jqGrid('restoreRow',lastSel1);
                         }

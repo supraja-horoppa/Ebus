@@ -17,6 +17,8 @@ public class Role {
     private String description;
     @Column(name = "status")
     private String status;
+    @Column(name="operations")
+    private String operations;
 	
 	public String getRoleId() {
 		return roleId;
@@ -41,6 +43,12 @@ public class Role {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getOperations() {
+		return operations;
+	}
+	public void setOperations(String operations) {
+		this.operations = operations;
 	}
     
     

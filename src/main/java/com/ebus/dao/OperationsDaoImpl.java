@@ -28,4 +28,17 @@ public class OperationsDaoImpl implements OperationsDao{
 		return opts;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Operations> readOperationsByRoleId(String roleId, String sidx, String sord) {
+		List<Operations> opts = new ArrayList<Operations>();
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+	    tx = session.getTransaction();
+	    opts = (ArrayList<Operations>) session.createQuery("select * FROM Operations where id in "
+	    		+ "(select operationId from RoleOperation where roleId='"+roleId+"') order by "+sidx+" "+sord).list(); 
+	    tx.commit();
+	    session.close();
+		return opts;
+	}
+	
 }

@@ -29,7 +29,7 @@
 			<li><a href="Home">Home</a></li>
 			<li><a href="#">Reports</a>
 				<ul>
-					<li><a href="reports">Daily Reports</a></li>
+					<li><a href="reportList">Daily Reports</a></li>
 					<li><a href="#">Digital Marketing</a></li>
 					<li><a href="#">Illustrations</a></li>
 					<li><a href="#">Infographics</a></li>

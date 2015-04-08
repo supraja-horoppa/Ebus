@@ -47,24 +47,15 @@ public class Utilities {
 	 * Convert String to Timestamp
 	 */
 	public static Timestamp fromStringToTimeStamp(String timeString){
-		Date parsedDate = new Date();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		try{
-			if (timeString != null && !timeString.isEmpty()) {
-				if (timeString.matches("\\d{4}-\\d{2}-\\d{2}")) {
-					df = new SimpleDateFormat("yyyy-MM-dd");
-				} else {
-					df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				}
-				parsedDate = df.parse(timeString);
-			} else {
-				parsedDate = df.parse(df.format(parsedDate));
-			}
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+		Timestamp date = null;
+		try {
+			date = new java.sql.Timestamp(df.parse(timeString).getTime());
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		catch(ParseException pe){
-			System.out.println("Error parsing current date: "+pe);
-		}
-		return new java.sql.Timestamp(parsedDate.getTime());
+		return date;
 	}
 
 	/**
