@@ -12,22 +12,50 @@
  <script src="<c:url value="/resources/js/script.js" />"></script>
 </head>
 <body>
-<div id="header">
-<table width="1000">
-	<tr>
-		<td width="500"><h2>Ebus</h2></td>
-		<td width="500"><br/>
-		
-		</td>
-	</tr>
-</table>
-
-</div>
+ <header>
+<div class="headerColorHome">
+    <div align="left" style="width: 30%; float: left;"><label id="headlabel1">Ebus</label>
+      <!-- <a href="/eBusPrototype/Home/Home"><img id="homeBusLogo" src="/eBusPrototype/Images/logo_comp1.png"  /></a> -->
+    </div>
+    <div align="left" style="float: left; width: 32%; height: 20px;">
+       <label id="headlabel1">eBusSupplies Back Office</label>
+    </div>
+    <div align="right" style="float: left; width: 35%">
+      <table align="right" cellpadding="0" cellspacing="0">
+      <tr>
+                        <td>
+                            <label class="labelFontCard1">Username:</label>
+                        </td>
+                        <td>
+                            <label class="labelFontCard1"><c:out value="${username}"></c:out></label>
+                        </td>
+                    </tr>
+      
+        <!-- <tr>
+           <td>
+               <label class="labelFontCard1">Search:</label>
+            </td>
+            <td>
+                <input type="search" id="searchSite" style="height:20px;width:100px;"/>
+            </td>
+        </tr> -->
+        <tr>
+             <td>
+                  <label class="labelFontCard1" style="visibility:hidden;">Logout:</label>
+             </td>
+             <td>
+                  <span class="labelFontCard1" style="padding-left: 50px;"><a href="logout">Logout</a></span>
+             </td>
+         </tr>
+      </table>
+      </div>
+  </div>
+</header>
 <div id="w">
 <nav>
 		<ul id="nav">
 			<li><a href="Home">Home</a></li>
-			<li><a href="#">Reports</a>
+			<li><a href="reportParams">Reports</a>
 				<ul>
 					<li><a href="reportList">Daily Reports</a></li>
 					<li><a href="#">Digital Marketing</a></li>
@@ -40,7 +68,7 @@
 					<li><a href="#">Cityscapes</a></li>
 					<li><a href="#">Oceans</a></li>
 				</ul></li>
-			<li><a href="Home">Admin Tool</a>
+			<li><a href="#">Admin Tool</a>
 				<ul>
 					<li><a href="roleAccess">Role Management</a></li>
 					<li><a href="userAccess">User Management</a></li>
@@ -51,7 +79,13 @@
 	</nav>
 </div>
 
-
+<%
+     response.setHeader("Cache-Control","no-cache");
+                   response.setHeader("Cache-Control","no-store");
+                response.setHeader("Pragma","no-cache");
+                 response.setDateHeader ("Expires", 0);
+                  
+                   %>
 
 </body>
 </html>

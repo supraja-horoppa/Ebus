@@ -18,6 +18,7 @@
 				<value>com.ebus.entity.Role</value>
 				<value>com.ebus.entity.Operations</value>
 				<value>com.ebus.entity.RoleOperation</value>
+				<value>com.ebus.entity.ReportParams</value>
 				</list>
 		</property>
 		<property name="hibernateProperties">

@@ -7,6 +7,6 @@ import com.ebus.entity.DailyAuditReport;
 
 public interface ReportsDao {
 	
-	public List<DailyAuditReport> dailyAuditReport(String location, Timestamp date);
+	public List<DailyAuditReport> dailyAuditReport(String location, String date);
 
 }

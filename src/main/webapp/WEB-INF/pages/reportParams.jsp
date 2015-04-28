@@ -14,32 +14,8 @@
  <link href="<c:url value="/resources/css/busReportCss.css" />" rel="stylesheet"/>
  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
- <script src="<c:url value="/resources/js/busReportJs.js" />"></script> 
-  <script>
-  $(document).ready(function(){
-	    $('#param').change(function(){
-	        if(this.checked){
-	        	document.getElementById('checkParam').value = "on";
-	        	$('#locationDiv').fadeOut('slow');
-	            $('#contractsDiv').fadeOut('slow');
-	        	$('#dutiesDiv').fadeOut('slow');
-	        	$('#routesDiv').fadeOut('slow');
-	        	$('#busesDiv').fadeOut('slow');
-	        	$('#staffDiv').fadeOut('slow');
-	        }
-	        else{
-	        	document.getElementById('checkParam').value = "off";
-	        	$('#locationDiv').fadeIn('slow');
-	        	$('#contractsDiv').fadeIn('slow');
-	        	$('#dutiesDiv').fadeIn('slow');
-	        	$('#routesDiv').fadeIn('slow');
-	        	$('#busesDiv').fadeIn('slow');
-	        	$('#staffDiv').fadeIn('slow');
-	        }
-      });
-	});
-	</script> 
-</head>
+ <script src="<c:url value="/resources/js/busReportJs.js" />"></script>  
+ </head>
 <body>
  <header>
 <div class="headerColorHome">
@@ -49,7 +25,7 @@
     <div align="left" style="float: left; width: 32%; height: 20px;">
        <label id="headlabel1">eBusSupplies Back Office</label>
     </div>
-    <div align="right" style="float: left; width: 35%">
+   <div align="right" style="float: left; width: 35%">
       <table align="right" cellpadding="0" cellspacing="0">
       <tr>
                         <td>
@@ -59,7 +35,6 @@
                             <label class="labelFontCard1"><c:out value="${username}"></c:out></label>
                         </td>
                     </tr>
-
         <!-- <tr>
            <td>
                <label class="labelFontCard1">Search:</label>
@@ -84,7 +59,7 @@
 <nav>
 		<ul id="nav">
 			<li><a href="Home">Home</a></li>
-			<li><a href="reeportParams">Reports</a>
+			<li><a href="#">Reports</a>
 				<ul>
 					<li><a href="reportList">Daily Reports</a></li>
 					<li><a href="#">Digital Marketing</a></li>
@@ -107,21 +82,10 @@
 		</ul>
 	</nav>
 </div>
-<div id="content" style='overflow:scroll;'>
-
+<div id="content" >
 <div style="margin: 40px 0 0 0; font-size: 15px;">
-
 <div id="accordion-1" style="width:900px;">
-
-<h2>Select Date</h2>
-   <div>
-   <table>
-     <tr><td><label class="labelFontCard">Calendar: </label></td><td><input type="text" id="datepicker" /></td></tr>
-     <tr><td><label class="labelFontCard">Use saved parameter</label></td><td><input type="checkbox" name="param" id="param" checked /></td></tr>
-     </table>
-   </div></div>
-   <div class="hidden" id="locationDiv" style="width:900px;font-size: 15px;">
-   <h2>Select Location:</h2>
+<h2>Select Location</h2>
    <div style="height:300px; ">
 		<div class="selectLocCls">Select:
 		</div>
@@ -146,54 +110,48 @@
 			   </div>
 			</div>
    </div>
-   </div>
-   
-   <div class ="hidden" id="contractsDiv" style="width:900px;font-size: 15px;">
-  <h2>Select Contracts:</h2>
-  <div>
+   <h2>Select Contracts</h2>
+   <div>
   <table>
      <tr><td>Contract1</td><td><input type="checkbox" name="contracts" value="Contract1" /> </td></tr>
-     <tr><td>Contract2 </td><td><input type="checkbox" name="contracts" value="Contract2" /></td></tr>
-     <tr><td>Contract3</td><td><input type="checkbox" name="contracts" value="Contract3" /></td></tr>
-     <tr><td>Contract4</td><td><input type="checkbox" name="contracts" value="Contract4" /></td></tr>
+     <tr><td>Contract2 </td><td><input type="checkbox" name="contracts" value="Contract2"/></td></tr>
+     <tr><td>Contract3</td><td><input type="checkbox" name="contracts" value="Contract3"/></td></tr>
+     <tr><td>Contract4</td><td><input type="checkbox" name="contracts" value="Contract4"/></td></tr>
    </table>   
    </div>
-   </div>
-   <div class="hidden" id="dutiesDiv" style="width:900px; font-size: 15px;">
-   <h2>Select Duties:</h2>
-  <div> <table>
+   <h2>Select Duties</h2>
+   <div>
+   <table>
       <tr><td>Duty1</td><td><input type="checkbox" name="duties" value="Duty1" /> </td></tr>
       <tr><td>Duty2 </td><td><input type="checkbox" name="duties" value="Duty2"/></td></tr>
       <tr><td>Duty3</td><td><input type="checkbox" name="duties" value="Duty3"/></td></tr>
       <tr><td>Duty4</td><td><input type="checkbox" name="duties" value="Duty4"/></td></tr>
-   </table></div>  </div>
-   
-   <div class="hidden" id="routesDiv" style="width:900px; font-size: 15px;" >
-  <h2>Select Routes:</h2>
-   <div><table>
+   </table>  </div>
+   <h2>Select Routes</h2>
+   <div>
+   <table>
      <tr><td>Route1</td><td><input type="checkbox" name="routes" value="Route1" /> </td></tr>
      <tr><td>Route2 </td><td><input type="checkbox" name="routes" value="Route2"/></td></tr>
      <tr><td>Route3</td><td><input type="checkbox" name="routes" value="Route3"/></td></tr>
      <tr><td>Route4</td><td><input type="checkbox" name="routes" value="Route4"/></td></tr>
-   </table></div>  </div>
-  
-   <div class="hidden" id="busesDiv" style="width:900px; font-size: 15px;"> 
-   <h2>Select Buses:</h2>
-   <div><table>
+   </table>  </div>
+   <h2>Select Buses</h2>
+   <div>
+   <table>
      <tr><td>Bus1</td><td><input type="checkbox" name="buses" value="Bus1" /> </td></tr>
      <tr><td>Bus2 </td><td><input type="checkbox" name="buses" value="Bus2"/></td></tr>
      <tr><td>Bus3</td><td><input type="checkbox" name="buses" value="Bus3"/></td></tr>
      <tr><td>Bus4</td><td><input type="checkbox" name="buses" value="Bus4"/></td></tr>
-   </table> </div> </div>
-   
-   <div class="hidden" id="staffDiv" style="width:900px; font-size: 15px;">
-   <h2>Select Staff:</h2>
-   <div><table>
+   </table>  </div>
+   <h2>Select Staff</h2>
+   <div>
+   <table>
      <tr><td>staff1</td><td><input type="checkbox" name="staff" value="staff1" /> </td></tr>
      <tr><td>staff2 </td><td><input type="checkbox" name="staff" value="staff2"/></td></tr>
      <tr><td>staff3</td><td><input type="checkbox" name="staff" value="staff3"/></td></tr>
      <tr><td>staff4</td><td><input type="checkbox" name="staff" value="staff4"/></td></tr>
-   </table></div>  </div>
+   </table>  </div></div>
+   <div>
    <label>Saved Parameters Details:</label>
    <br></br>
    
@@ -209,29 +167,28 @@
     </c:if>
     
    </div>
-       <div id="selectedLocDisId" style="margin: 50px 0 0 100px; width:900px;">
-       <form  method="post" action="getDailyAuditReport"  >
-       <table><tr>
-       		<td><input type="hidden" id="location" name="location" /></td>
+   <div id="selectedLocDisId" style="margin: 50px 0 0 100px; width:900px;">
+   <form  method="post" action="saveReportParams"  >
+		
+			<div class="clear"></div>
+			<table><tr>
+			<td><input type="hidden" id="location" name="location" /></td>
 			<td><input type="hidden" id="date" name="date"/></td>
 			<td><input type="hidden" id="contracts" name = "contracts" /></td></tr>
 			<tr><td><input type="hidden" id="duties" name="duties" /></td>
 			<td><input type="hidden" id="routes" name="routes" /></td>
 			<td><input type="hidden" id="buses" name="buses" /></td></tr>
-			<tr><td><input type="hidden" id="staff" name="staff" /></td>
-			<td><input type="hidden" id="checkParam" name = "checkParam" value="on"/></td></tr>
+			<td><input type="hidden" id="staff" name="staff" /></td>
 			</table>
-		    <div id ="closeAllTabsBtn" >
+			<div id ="closeAllTabsBtn" >
 			<table width =50% >
-			<tr><td><input type="submit"  class="button"  value="Get Report"/></td>
+			<tr><td><input type="submit"  class="button"  value="Save Params"/></td>
 			<td><input type="reset"	 class="button" value="Reset"/></td></tr>
 			</table></div>
-			</form>
-			</div>
+        
     
-
-  
-   
+</form>
+</div>
 </div>
 </div>
 </body>

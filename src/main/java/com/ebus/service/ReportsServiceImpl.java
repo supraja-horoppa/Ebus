@@ -13,7 +13,7 @@ public class ReportsServiceImpl implements ReportsService{
 	@Autowired
 	ReportsDao reportsDao;
 
-	public List<DailyAuditReport> dailyAuditReport(String location, Timestamp date) {
+	public List<DailyAuditReport> dailyAuditReport(String location, String date) {
 		return reportsDao.dailyAuditReport(location, date);
 	}
 

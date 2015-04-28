@@ -20,5 +20,7 @@
 	<bean id = "roleOperationDao" class = "com.ebus.dao.RoleOperationDaoImpl"></bean>
 	<bean id = "reportsService" class = "com.ebus.service.ReportsServiceImpl"></bean>
 	<bean id = "reportsDao" class = "com.ebus.dao.ReportsDaoImpl"></bean>
+	<bean id = "reportParamsService" class = "com.ebus.service.ReportParamsServiceImpl"></bean>
+	<bean id = "reportParamsDao" class = "com.ebus.dao.ReportParamsDaoImpl"></bean>
 
 </beans>

@@ -12,7 +12,7 @@ import com.google.gson.GsonBuilder;
 
 
 @Entity
-@Table(name="dbo.cl_login")
+@Table(name="dbo.Login")
 public class LoginForm {
 
 	@Id
@@ -35,6 +35,7 @@ public class LoginForm {
 	@Column(name="role")
 	private String role;
 	 
+	
 	 public LoginForm(){
 		 
 	 }

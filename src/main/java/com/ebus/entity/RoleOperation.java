@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="dbo.cl_role_operations")
+@Table(name="dbo.RoleOperations")
 public class RoleOperation {
 	@Id
     private RoleOperationId roleOperationId;

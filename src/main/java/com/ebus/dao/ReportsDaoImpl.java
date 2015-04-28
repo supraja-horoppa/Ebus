@@ -21,7 +21,7 @@ public class ReportsDaoImpl implements ReportsDao{
 	Session session = null;
 	Transaction tx = null;
 
-	public List<DailyAuditReport> dailyAuditReport(String location, Timestamp date) {
+	public List<DailyAuditReport> dailyAuditReport(String location, String date) {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 	    tx = session.getTransaction();

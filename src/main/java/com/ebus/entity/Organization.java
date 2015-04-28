@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="dbo.cl_organization")
+@Table(name="dbo.Organization")
 public class Organization {
 
 	@Id

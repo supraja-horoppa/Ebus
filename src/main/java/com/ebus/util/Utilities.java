@@ -46,7 +46,7 @@ public class Utilities {
 	/**
 	 * Convert String to Timestamp
 	 */
-	public static Timestamp fromStringToTimeStamp(String timeString){
+	public static String fromStringToTimeStamp(String timeString){
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 		Timestamp date = null;
 		try {
@@ -55,7 +55,7 @@ public class Utilities {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return date;
+		return fromTimestampToString(date);
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class Utilities {
 		}
 	}
 
-	public static Timestamp UTCToLocal(Timestamp timeStamp, String timeZone) {
+	/*public static Timestamp UTCToLocal(Timestamp timeStamp, String timeZone) {
 		if (timeZone != null && !timeZone.isEmpty()) {
 			SimpleDateFormat sdfgmt = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
@@ -277,7 +277,7 @@ public class Utilities {
 		}
 
 		return null;
-	}
+	}*/
 
 	public static Properties getProperties(String fileName) throws Exception {
 

@@ -39,7 +39,7 @@
 		 .ui-widget-content{
 			background:none;
 		}
-		ul{
+		#accordion-1.ul{
 		list-style: none;
 		border:1px solid #18ab29;
 		width:200px;
@@ -69,3 +69,7 @@
 		display:inline-block;
 		
 	}
+
+	.hidden {
+    display: none;    
+}

@@ -5,12 +5,68 @@ $(function() {
 			clearStyle: true,
 			collapsible: true,
 			active: false
-			
 			});
-			
+            
+            $( "#contractsDiv" ).accordion({
+    			heightStyle: "content",
+                autoHeight: false,
+    			clearStyle: true,
+    			collapsible: true,
+    			active: false
+    			});
+            $( "#dutiesDiv" ).accordion({
+    			heightStyle: "content",
+                autoHeight: false,
+    			clearStyle: true,
+    			collapsible: true,
+    			active: false
+    			});
+            $( "#busesDiv" ).accordion({
+    			heightStyle: "content",
+                autoHeight: false,
+    			clearStyle: true,
+    			collapsible: true,
+    			active: false
+    			});
+            $( "#routesDiv" ).accordion({
+    			heightStyle: "content",
+                autoHeight: false,
+    			clearStyle: true,
+    			collapsible: true,
+    			active: false
+    			});
+            $( "#staffDiv" ).accordion({
+    			heightStyle: "content",
+                autoHeight: false,
+    			clearStyle: true,
+    			collapsible: true,
+    			active: false
+    			});
+            $( "#locationDiv" ).accordion({
+    			heightStyle: "content",
+                autoHeight: false,
+    			clearStyle: true,
+    			collapsible: true,
+    			active: false
+    			});
+            
+            var selectedDeposGlobal = "";
+            var selectedDateGlobal = "";
+            var selectedContractsGlobal = "";
+            var selectedDutiesGlobal = "";
+            var selectedRoutesGlobal = "";
+            var selectedBusesGlobal = "";
+            var selectedStaffGlobal = "";
+            var locationGlobal = "";
+            var dateGlobal = "";
+            var contractsGlobal = "";
+            var dutiesGlobal = "";
+            var routesGlobal = "";
+            var busesGlobal = "";
+            var staffGlobal = "";
 			$( document ).ready(function() {
 				var selectedLocationVal = null;
-				var selectedDepos = "";
+				
 				busLocationDepos = {"bus":[
 					{"locationName":"HeadOffice", "depos":[""]}, 
 					{"locationName":"Company", "depos":["Atamelang"]},
@@ -63,8 +119,42 @@ $(function() {
 									  selectedDepos += $( this ).text() + ",";
 									});
 									selectedDepos = selectedDepos.substring(0, selectedDepos.length - 1);
+									selectedDeposGlobal = selectedDepos;
 									document.getElementById('location').value=selectedDepos;
 									document.getElementById('date').value=selectedDate;
+									document.getElementById('contracts').value = selectedContractsGlobal;
+									if(selectedDepos!= ""){
+										locationGlobal= "Location parameter is "+selectedDepos+".";
+									} else {
+										locationGlobal = "Location parameter is not provided.";
+									}
+									if(selectedContractsGlobal != "") {
+										contractsGlobal = "Contracts parameter is "+selectedContractsGlobal;
+									} else {
+										contractsGlobal = "Contracts parameter is not provided";
+									}
+									if(selectedDutiesGlobal != "") {
+										dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+									} else {
+										dutiesGlobal = "Duties parameter is not provided";
+									}
+									if(selectedRoutesGlobal != "") {
+										routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+									} else {
+										routesGlobal = "Routes parameter is not provided";
+									}
+									if(selectedBusesGlobal != "") {
+										busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+									} else {
+										busesGlobal = "Buses parameter is not provided";
+									}
+									if(selectedStaffGlobal != ""){
+										staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+									} else {
+										staffGlobal = "Staff parameter is not provided";
+									}
+									document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+												+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
 									
 							});
 							
@@ -91,8 +181,43 @@ $(function() {
 									  selectedDepos += $( this ).text() + ",";
 									});
 									selectedDepos = selectedDepos.substring(0, selectedDepos.length - 1);
+									selectedDeposGlobal = selectedDepos;
 									document.getElementById('location').value=selectedDepos;
 									document.getElementById('date').value=selectedDate;
+									document.getElementById('contracts').value = selectedContractsGlobal;
+									if(selectedDepos!= ""){
+										locationGlobal= "Location parameter is "+selectedDepos+".";
+									} else {
+										locationGlobal = "Location parameter is not provided.";
+									}
+									if(selectedContractsGlobal != "") {
+										contractsGlobal = "Contracts parameter is "+selectedContractsGlobal;
+									} else {
+										contractsGlobal = "Contracts parameter is not provided";
+									}
+									
+									if(selectedDutiesGlobal != "") {
+										dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+									} else {
+										dutiesGlobal = "Duties parameter is not provided";
+									}
+									if(selectedRoutesGlobal != "") {
+										routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+									} else {
+										routesGlobal = "Routes parameter is not provided";
+									}
+									if(selectedBusesGlobal != "") {
+										busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+									} else {
+										busesGlobal = "Buses parameter is not provided";
+									}
+									if(selectedStaffGlobal != ""){
+										staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+									} else {
+										staffGlobal = "Staff parameter is not provided";
+									}
+									document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+												+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
 																		 
 							});
 														  
@@ -110,10 +235,258 @@ $(function() {
 										  selectedDepos += $( this ).text() + ",";
 										});
 										selectedDepos = selectedDepos.substring(0, selectedDepos.length - 1);
+										selectedDeposGlobal = selectedDepos;
+										selectedDateGlobal = selectedDate;
 										document.getElementById('location').value=selectedDepos;
 										document.getElementById('date').value=selectedDate;
+										document.getElementById('contracts').value = selectedContractsGlobal;
+										if(selectedDepos!= ""){
+											locationGlobal= "Location parameter is "+selectedDepos+".";
+										} else {
+											locationGlobal = "Location parameter is not provided.";
+										}
+										if(selectedContractsGlobal != "") {
+											contractsGlobal = "Contracts parameter is "+selectedContractsGlobal;
+										} else {
+											contractsGlobal = "Contracts parameter is not provided";
+										}
+										if(selectedDutiesGlobal != "") {
+											dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+										} else {
+											dutiesGlobal = "Duties parameter is not provided.";
+										}
+										if(selectedRoutesGlobal != "") {
+											routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+										} else {
+											routesGlobal = "Routes parameter is not provided";
+										}
+										if(selectedBusesGlobal != "") {
+											busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+										} else {
+											busesGlobal = "Buses parameter is not provided";
+										}
+										if(selectedStaffGlobal != ""){
+											staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+										} else {
+											staffGlobal = "Staff parameter is not provided";
+										}
+										document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+													+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
 									});
-							  
+								
+								var selectedDuties = "";
+								var $checkes = $('input:checkbox[name="duties"]').change(function () {
+									var checkboxes = document.querySelectorAll('input[name="duties"]:checked'), values = [];
+								    Array.prototype.forEach.call(checkboxes, function(el) {
+								        values.push(el.value);
+								    });
+								  selectedDuties= values; 
+								selectedDutiesGlobal = selectedDuties;
+								document.getElementById('duties').value = selectedDutiesGlobal;
+								if(selectedDeposGlobal!= ""){
+									locationGlobal= "Location parameter is "+selectedDeposGlobal+".";
+								} else {
+									locationGlobal = "Location parameter is not provided.";
+								}
+								if(selectedContractsGlobal != ""){
+									contractsGlobal = "Contract parameter is "+selectedContracts;
+								} else {
+									contractsGlobal = "Contract parameter is not provided.";
+								}
+								if(selectedDutiesGlobal != "") {
+									dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+								} else {
+									dutiesGlobal = "Duties parameter is not provided";
+								}
+								if(selectedRoutesGlobal != "") {
+									routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+								} else {
+									routesGlobal = "Routes parameter is not provided";
+								}
+								if(selectedBusesGlobal != "") {
+									busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+								} else {
+									busesGlobal = "Buses parameter is not provided";
+								}
+								if(selectedStaffGlobal != ""){
+									staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+								} else {
+									staffGlobal = "Staff parameter is not provided";
+								}
+								document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+											+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
+							     });
+								
+								var selectedRoutes = "";
+								var $checkes = $('input:checkbox[name="routes"]').change(function () {
+									var checkboxes = document.querySelectorAll('input[name="routes"]:checked'), values = [];
+								    Array.prototype.forEach.call(checkboxes, function(el) {
+								        values.push(el.value);
+								    });
+								  selectedRoutes= values; 
+								selectedRoutesGlobal = selectedRoutes;
+								document.getElementById('routes').value = selectedRoutesGlobal;
+								if(selectedDeposGlobal!= ""){
+									locationGlobal= "Location parameter is "+selectedDeposGlobal+".";
+								} else {
+									locationGlobal = "Location parameter is not provided.";
+								}
+								if(selectedContractsGlobal != ""){
+									contractsGlobal = "Contract parameter is "+selectedContracts;
+								} else {
+									contractsGlobal = "Contract parameter is not provided.";
+								}
+								if(selectedDutiesGlobal != "") {
+									dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+								} else {
+									dutiesGlobal = "Duties parameter is not provided";
+								}
+								if(selectedRoutesGlobal != "") {
+									routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+								} else {
+									routesGlobal = "Routes parameter is not provided";
+								}
+								if(selectedBusesGlobal != "") {
+									busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+								} else {
+									busesGlobal = "Buses parameter is not provided";
+								}
+								if(selectedStaffGlobal != ""){
+									staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+								} else {
+									staffGlobal = "Staff parameter is not provided";
+								}
+								document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+											+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
+							     });
+								
+								var selectedBuses = "";
+								var $checkes = $('input:checkbox[name="buses"]').change(function () {
+									var checkboxes = document.querySelectorAll('input[name="buses"]:checked'), values = [];
+								    Array.prototype.forEach.call(checkboxes, function(el) {
+								        values.push(el.value);
+								    });
+								  selectedBuses= values; 
+								selectedBusesGlobal = selectedBuses;
+								document.getElementById('buses').value = selectedBusesGlobal;
+								if(selectedDeposGlobal!= ""){
+									locationGlobal= "Location parameter is "+selectedDeposGlobal+".";
+								} else {
+									locationGlobal = "Location parameter is not provided.";
+								}
+								if(selectedContractsGlobal != ""){
+									contractsGlobal = "Contract parameter is "+selectedContracts;
+								} else {
+									contractsGlobal = "Contract parameter is not provided.";
+								}
+								if(selectedDutiesGlobal != "") {
+									dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+								} else {
+									dutiesGlobal = "Duties parameter is not provided";
+								}
+								if(selectedRoutesGlobal != "") {
+									routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+								} else {
+									routesGlobal = "Routes parameter is not provided";
+								}
+								if(selectedBusesGlobal != "") {
+									busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+								} else {
+									busesGlobal = "Buses parameter is not provided";
+								}
+								if(selectedStaffGlobal != ""){
+									staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+								} else {
+									staffGlobal = "Staff parameter is not provided";
+								}
+								document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+											+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
+							     });
+								
+								var selectedStaff = "";
+								var $checkes = $('input:checkbox[name="staff"]').change(function () {
+									var checkboxes = document.querySelectorAll('input[name="staff"]:checked'), values = [];
+								    Array.prototype.forEach.call(checkboxes, function(el) {
+								        values.push(el.value);
+								    });
+								  selectedStaff= values; 
+								selectedStaffGlobal = selectedStaff;
+								document.getElementById('staff').value = selectedStaffGlobal;
+								if(selectedDeposGlobal!= ""){
+									locationGlobal= "Location parameter is "+selectedDeposGlobal+".";
+								} else {
+									locationGlobal = "Location parameter is not provided.";
+								}
+								if(selectedContractsGlobal != ""){
+									contractsGlobal = "Contract parameter is "+selectedContracts;
+								} else {
+									contractsGlobal = "Contract parameter is not provided.";
+								}
+								if(selectedDutiesGlobal != "") {
+									dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+								} else {
+									dutiesGlobal = "Duties parameter is not provided";
+								}
+								if(selectedRoutesGlobal != "") {
+									routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+								} else {
+									routesGlobal = "Routes parameter is not provided";
+								}
+								if(selectedBusesGlobal != "") {
+									busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+								} else {
+									busesGlobal = "Buses parameter is not provided";
+								}
+								if(selectedStaffGlobal != ""){
+									staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+								} else {
+									staffGlobal = "Staff parameter is not provided";
+								}
+								document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+											+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
+							     });
+								
+								var selectedContracts = "";
+								var $checkes = $('input:checkbox[name="contracts"]').change(function () {
+									selectedContracts = $checkes.filter(':checked').map(function () {
+								     return this.value;
+								  }).get();
+									selectedContractsGlobal = selectedContracts;
+								document.getElementById('contracts').value = selectedContractsGlobal;
+								if(selectedDeposGlobal!= ""){
+									locationGlobal= "Location parameter is "+selectedDeposGlobal+".";
+								} else {
+									locationGlobal = "Location parameter is not provided.";
+								}
+								if(selectedContractsGlobal != ""){
+									contractsGlobal = "Contract parameter is "+selectedContracts;
+								} else {
+									contractsGlobal = "Contract parameter is not provided.";
+								}
+								if(selectedDutiesGlobal != "") {
+									dutiesGlobal = "Duties parameter is "+selectedDutiesGlobal;
+								} else {
+									dutiesGlobal = "Duties parameter is not provided";
+								}
+								if(selectedRoutesGlobal != "") {
+									routesGlobal = "Routes parameter is "+selectedRoutesGlobal;
+								} else {
+									routesGlobal = "Routes parameter is not provided";
+								}
+								if(selectedBusesGlobal != "") {
+									busesGlobal = "Buses parameter is "+selectedBusesGlobal;
+								} else {
+									busesGlobal = "Buses parameter is not provided";
+								}
+								if(selectedStaffGlobal != ""){
+									staffGlobal = "Staff parameter is "+selectedStaffGlobal;
+								} else {
+									staffGlobal = "Staff parameter is not provided";
+								}
+								document.getElementById('params').value = locationGlobal+"\n"+contractsGlobal
+											+"\n"+dutiesGlobal+"\n"+routesGlobal+"\n"+busesGlobal+"\n"+staffGlobal;
+							     });	
+
 							  $("#selectedLocDepoDateAddBtn").click(function(){	
 							  var selectedLoc = selectedLocationVal;
 									var selectedDepos = "";

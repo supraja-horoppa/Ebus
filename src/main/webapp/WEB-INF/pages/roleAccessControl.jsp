@@ -41,7 +41,9 @@
                            {name:'roleId', index:'roleId',width:150,editable:true,sorttype:'text',hidden:true},
                      {name:'roleName',index:'roleName', width:150,editable:true,sorttype:'text',editrules:{text:true},},
                      {name:'description',index:'description', width:150,editable:true,sorttype:'text'},
-                     {name:'status',index:'status', width:150,editable:true,sorttype:'text'},
+                     {name:'status',index:'status', width:150,editable:true,editrules: {required: true}, edittype: 'select', 
+    						formatter: 'text',
+    						editoptions:{value:getAllSelectOptions()}},
                      {name:'operations', index:'operations', width:150,editable:true,sorttype:'text',hidden:true}
                  ],
                  rowList:[10, 20, 50, 100],
@@ -161,6 +163,10 @@
                 }
 
              });
+		function getAllSelectOptions(){
+				 var states = { 'Active': 'Active', 'InActive': 'InActive' };
+     			  return states;
+			}
 
 $('#save_role_operation').click(function(){
    var myGrid = $("#roleMgmtTable");

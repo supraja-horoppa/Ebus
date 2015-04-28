@@ -4,18 +4,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 import com.ebus.entity.CustomResponse;
 import com.ebus.entity.LoginForm;
 import com.ebus.service.LoginService;
 import com.ebus.service.OrganizationService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.http.HttpStatus;
@@ -47,8 +42,10 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(Model model, LoginForm loginForm, BindingResult result, RedirectAttributes redirectAttributes) {
-
+    public String create(Model model, LoginForm loginForm, BindingResult result, 
+    		RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    	HttpSession sessionObj = request.getSession();
+    	
     	LoginForm login = loginService.getLoginByUsername(loginForm.getUsername());
     	//loginService.dailyAuditReport();    	
 		if(login == null) {
@@ -61,6 +58,9 @@ public class LoginController {
 		}
 		if (loginForm.getUsername().equals(username)
 				&& loginForm.getPassword().equals(password)) {
+			sessionObj.setAttribute("username" , loginForm.getUsername());
+			System.out.println("login id "+login.getId());
+			sessionObj.setAttribute("loginId", login.getId());
 			return "loginsuccess";
 		}
 		return "loginfail";
@@ -137,6 +137,16 @@ public class LoginController {
     	CustomResponse response = loginService.getUsers(page, rows, sidx, sord);
     	return response;
 	}
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Map<String, Object> model){
+    	LoginForm loginForm = new LoginForm();
+    	ArrayList<String> orgnames = orgService.getOrganizations();
+    	model.put("loginForm", loginForm);
+        model.put("organizationList", orgnames);
+        return "login";
+    }
+    
     
 }
 
