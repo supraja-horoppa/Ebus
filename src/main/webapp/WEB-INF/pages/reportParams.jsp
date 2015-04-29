@@ -163,9 +163,8 @@
    Staff parameter is not provided.</textarea>
    </div></div>
    <div>
-   <label>Saved Parameters Details:</label>
-   <br></br>
-   <c:if test="${not empty objects}">
+   <table><tr><td><label>Saved Parameters Details:</label></td>
+   <td><c:if test="${not empty objects}">
     	<ul>
 			<c:forEach var="listValue" items="${objects}">
 				<li>${listValue}</li>
@@ -174,8 +173,7 @@
    </c:if>
     <c:if test="${empty objects}">
         No parameters provided.
-    </c:if>
-    
+    </c:if></td></tr></table>
    </div>
    <div id="selectedLocDisId" style="margin: 50px 0 0 100px; width:900px;">
    <form  method="post" action="saveReportParams"  >

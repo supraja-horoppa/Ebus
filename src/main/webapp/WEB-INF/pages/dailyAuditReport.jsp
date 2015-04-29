@@ -107,12 +107,9 @@
 		</ul>
 	</nav>
 </div>
-<div id="content" style='overflow:scroll;'>
-
+<div id="content" style="overflow: auto; height: 600px; width:auto; padding:0px; ">
 <div style="margin: 40px 0 0 0; font-size: 15px;">
-
 <div id="accordion-1" style="width:900px;">
-
 <h2>Select Date</h2>
    <div>
    <table>
@@ -204,10 +201,9 @@
    Buses parameter is not provided.
    Staff parameter is not provided.</textarea>
    </div></div>
-   <label>Saved Parameters Details:</label>
-   <br></br>
-   
-   <c:if test="${not empty objects}">
+   <div>
+   <table><tr><td><label>Saved Parameters Details:</label></td>
+   <td><c:if test="${not empty objects}">
     	<ul>
 			<c:forEach var="listValue" items="${objects}">
 				<li>${listValue}</li>
@@ -216,8 +212,8 @@
    </c:if>
     <c:if test="${empty objects}">
         No parameters provided.
-    </c:if>
-    
+    </c:if></td></tr></table>
+   </div> 
    </div>
        <div id="selectedLocDisId" style="margin: 50px 0 0 100px; width:900px;">
        <form  method="post" action="getDailyAuditReport"  >
@@ -238,11 +234,7 @@
 			</table></div>
 			</form>
 			</div>
-    
-
-  
-   
-</div>
+</div>   
 </div>
 </body>
 </html>
