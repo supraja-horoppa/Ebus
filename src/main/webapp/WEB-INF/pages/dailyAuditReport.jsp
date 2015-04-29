@@ -84,7 +84,7 @@
 <nav>
 		<ul id="nav">
 			<li><a href="Home">Home</a></li>
-			<li><a href="reeportParams">Reports</a>
+			<li><a href="reportParams">Reports</a>
 				<ul>
 					<li><a href="reportList">Daily Reports</a></li>
 					<li><a href="#">Digital Marketing</a></li>
@@ -193,7 +193,17 @@
      <tr><td>staff2 </td><td><input type="checkbox" name="staff" value="staff2"/></td></tr>
      <tr><td>staff3</td><td><input type="checkbox" name="staff" value="staff3"/></td></tr>
      <tr><td>staff4</td><td><input type="checkbox" name="staff" value="staff4"/></td></tr>
-   </table></div>  </div>
+   </table></div>  
+   <div id="summary" >
+   <label>Selected summary:</label>
+   <textarea rows="7" name="params" id="params" style="width:600px;">
+   Location parameter is not provided.
+   Contracts parameter is not provided.
+   Duties parameter is not provided.
+   Routes parameter is not provided.
+   Buses parameter is not provided.
+   Staff parameter is not provided.</textarea>
+   </div></div>
    <label>Saved Parameters Details:</label>
    <br></br>
    

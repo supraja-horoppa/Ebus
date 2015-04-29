@@ -65,6 +65,7 @@ $(function() {
             var busesGlobal = "";
             var staffGlobal = "";
 			$( document ).ready(function() {
+				$('#summary').fadeIn('slow');
 				var selectedLocationVal = null;
 				
 				busLocationDepos = {"bus":[

@@ -151,10 +151,20 @@
      <tr><td>staff3</td><td><input type="checkbox" name="staff" value="staff3"/></td></tr>
      <tr><td>staff4</td><td><input type="checkbox" name="staff" value="staff4"/></td></tr>
    </table>  </div></div>
+   <div id="summary">
+   <label>Selected summary</label>
+   <div>
+   <textarea rows="7" name="params" id="params" style="width:600px;">
+   Location parameter is not provided.
+   Contracts parameter is not provided.
+   Duties parameter is not provided.
+   Routes parameter is not provided.
+   Buses parameter is not provided.
+   Staff parameter is not provided.</textarea>
+   </div></div>
    <div>
    <label>Saved Parameters Details:</label>
    <br></br>
-   
    <c:if test="${not empty objects}">
     	<ul>
 			<c:forEach var="listValue" items="${objects}">
